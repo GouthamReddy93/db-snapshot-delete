@@ -1,0 +1,1301 @@
+20210513T10:32:49   Uploading the rds-manual-snapshot-deletion lambda to S3
+20210513T10:32:49  Executing lambda_export1=$( lambda/uploads3.sh "pilot" "rds-manualsnapshot-deletion" "lambda/rds-manualsnapshot-deletion" | tail -n 1 )
+20210513T10:32:52   Successfully uploaded rds-manual-snapshot-deletion  lambda to S3...
+20210513T10:36:03   Uploading the rds-manual-snapshot-deletion lambda to S3
+20210513T10:36:03  Executing lambda_export1=$( uploads3.sh "pilot" "rds-manualsnapshot-deletion" "lambda/rds-manualsnapshot-deletion" | tail -n 1 )
+20210513T10:36:06   Successfully uploaded rds-manual-snapshot-deletion  lambda to S3...
+20210513T10:36:06  Executing lambda_export2=$(uploads3.sh "pilot" "rds-retention-days-policy-notification" "lambda/rds-retention-days-policy-notification" | tail -n 1 )
+20210513T10:38:48   Uploading the rds-manual-snapshot-deletion lambda to S3
+20210513T10:38:48  Executing lambda_export2=$(uploads3.sh "pilot" "rds-retention-days-policy-notification" "lambda/rds-retention-days-policy-notification" | tail -n 1 )
+20210513T10:39:50   Uploading the rds-manual-snapshot-deletion lambda to S3
+20210513T10:39:50  Executing lambda_export2=$(uploads3.sh "pilot" "rds-retention-days-policy-notification" "lambda/rds-retention-days-policy-notification" | tail -n 1 )
+20210513T10:39:54   Successfully uploaded rds-retention-days-policy-notification lambda to S3...
+20210513T10:41:41   Uploading the rds-manual-snapshot-deletion lambda to S3
+20210513T10:41:41  Executing lambda_export1=$( uploads3.sh "pilot" "rds-manualsnapshot-deletion" "lambda/rds-manualsnapshot-deletion" | tail -n 1 )
+20210513T10:41:45   Successfully uploaded rds-manual-snapshot-deletion  lambda to S3...
+20210513T10:41:45  Executing lambda_export2=$(uploads3.sh "pilot" "rds-retention-days-policy-notification" "lambda/rds-retention-days-policy-notification" | tail -n 1 )
+20210513T10:41:47   Successfully uploaded rds-retention-days-policy-notification lambda to S3...
+20210513T10:43:27   Deploying the  Stack which creates the Lambda function for Manual snapshot deletion
+20210513T10:43:27   Getting OS Details
+20210513T10:43:27   Unable to generate Stack_master.yml for basic Lambda stack, exiting the program. Check /root/503227922/git/dbss-aws-ops-deployment/db-snapshot-delete/deployment_logs/pilot_dbss_rds_hardening_lambda_upload.log for more details 
+20210513T10:46:51   Deploying the  Stack which creates the Lambda function for Manual snapshot deletion
+20210513T10:46:51   Getting OS Details
+20210513T10:46:51   Stack: dbss-manualsnapshotdeletions-pilot; Writing params to file parameters/pilot/dbss_manualsnapshotdeletions_pilot.yml
+20210513T10:46:51   Writing output to stack_master.yml
+20210513T10:46:51   Successfully Generated the Stack_master.yml for Lambda Function...
+20210513T10:46:53   Stack: dbss-manualsnapshotdeletions-pilot; Writing params to file parameters/pilot/dbss_manualsnapshotdeletions_pilot.yml
+20210513T10:46:53   Writing output to stack_master.yml
+20210513T10:46:53   
+20210513T10:46:53   Fetching stack information: |==========================================================================================================================================|
+20210513T10:46:53   REGION    | STACK_NAME                         | STACK_STATUS | DIFFERENT
+20210513T10:46:53   ----------|------------------------------------|--------------|----------
+20210513T10:46:53   us-east-1 | dbss-manualsnapshotdeletions-pilot |              | Yes
+20210513T10:46:53   * No echo parameters can't be diffed
+20210513T10:46:53   Successfully Stack_master Status forLambda Function...
+20210513T10:48:59   Stack: dbss-manualsnapshotdeletions-pilot; Writing params to file parameters/pilot/dbss_manualsnapshotdeletions_pilot.yml
+20210513T10:48:59   Writing output to stack_master.yml
+20210513T10:48:59   
+20210513T10:48:59   Fetching stack information: |==========================================================================================================================================|
+20210513T10:48:59   REGION    | STACK_NAME                         | STACK_STATUS | DIFFERENT
+20210513T10:48:59   ----------|------------------------------------|--------------|----------
+20210513T10:48:59   us-east-1 | dbss-manualsnapshotdeletions-pilot |              | Yes
+20210513T10:48:59   * No echo parameters can't be diffed
+20210513T10:48:59   Executing apply on dbss-manualsnapshotdeletions-pilot in us-east-1
+20210513T10:48:59   Stack diff:
+20210513T10:48:59   +---
+20210513T10:48:59   +AWSTemplateFormatVersion: "2010-09-09"
+20210513T10:48:59   +Description: AWS CloudFormation Template to deploy Manual snapshot deletion and notification lambda function.
+20210513T10:48:59   +Metadata:
+20210513T10:48:59   +  AWS::CloudFormation::Interface:
+20210513T10:48:59   +    ParameterGroups:
+20210513T10:48:59   +      ################################################
+20210513T10:48:59   +      # Lambda Function
+20210513T10:48:59   +      #############################################
+20210513T10:48:59   +      - Label:
+20210513T10:48:59   +          default: Input Details for Lambda Function's
+20210513T10:48:59   +        Parameters:
+20210513T10:48:59   +          - VPCAlias
+20210513T10:48:59   +          - CodeBucketName
+20210513T10:48:59   +      ###########################################
+20210513T10:48:59   +      # rds-manualsnapshot-deletion Lambda
+20210513T10:48:59   +      ###########################################
+20210513T10:48:59   +      - Label:
+20210513T10:48:59   +          default: rds-manualsnapshot-deletion Lambda Configuration
+20210513T10:48:59   +        Parameters:
+20210513T10:48:59   +          - SnapshotDeletionS3File
+20210513T10:48:59   +          - SnapshotDeletionModuleName
+20210513T10:48:59   +      ###########################################
+20210513T10:48:59   +      # rds-retention-days-policy-notification Lambda
+20210513T10:48:59   +      ###########################################
+20210513T10:48:59   +      - Label:
+20210513T10:48:59   +          default: rds-retention-days-policy-notification Lambda Configuration
+20210513T10:48:59   +        Parameters:
+20210513T10:48:59   +          - SnapshotRetentionDaysS3File
+20210513T10:48:59   +          - SnapshotRetentionDaysModuleName
+20210513T10:48:59   +Parameters:
+20210513T10:48:59   +  VPCAlias:
+20210513T10:48:59   +    Description: "The VPC alias within this account. This is logical label identifying execution environment."
+20210513T10:48:59   +    Default: ""
+20210513T10:48:59   +    Type: String
+20210513T10:48:59   +  UAI:
+20210513T10:48:59   +    Type: String
+20210513T10:48:59   +    Description: The UAI of the application being charged for usage.
+20210513T10:48:59   +    ConstraintDescription: The UAI must be valid, but specified as 'UAI' or 'uai' followed by 7 digits
+20210513T10:48:59   +    AllowedPattern: '^(UAI|uai)[0-9]*$'
+20210513T10:48:59   +    MinLength: 10
+20210513T10:48:59   +    MaxLength: 10
+20210513T10:48:59   +    Default: 'UAI3036792'
+20210513T10:48:59   +
+20210513T10:48:59   +  CodeBucketName:
+20210513T10:48:59   +    Description: "Optional. Name of S3 bucket with Lambda code and scripts are stored"
+20210513T10:48:59   +    Default: ""
+20210513T10:48:59   +    Type: String
+20210513T10:48:59   +  SnapshotDeletionS3File:
+20210513T10:48:59   +    Description: The name of the ZIP package
+20210513T10:48:59   +    Default: "lambda/rds-manualsnapshot-deletion/rds-manualsnapshot-deletion.zip"
+20210513T10:48:59   +    Type: String
+20210513T10:48:59   +  SnapshotDeletionModuleName:
+20210513T10:48:59   +    Description: The name of the Python file
+20210513T10:48:59   +    Default: "rds-manualsnapshot-deletion"
+20210513T10:48:59   +    Type: String
+20210513T10:48:59   +  SnapshotRetentionDaysS3File:
+20210513T10:48:59   +    Description: The name of the ZIP package
+20210513T10:48:59   +    Default: "lambda/rds-retention-days-policy-notification/rds-retention-days-policy-notification.zip"
+20210513T10:48:59   +    Type: String
+20210513T10:48:59   +  SnapshotRetentionDaysModuleName:
+20210513T10:48:59   +    Description: The name of the Python file
+20210513T10:48:59   +    Default: "rds-retention-days-policy-notification"
+20210513T10:48:59   +    Type: String
+20210513T10:48:59   +
+20210513T10:48:59   +Conditions:
+20210513T10:48:59   +  HasCodeBucketName: !Not [!Equals [!Ref CodeBucketName, '']]
+20210513T10:48:59   +Resources:
+20210513T10:49:00   +  lambdardsdeletion:
+20210513T10:49:00   +    Type: AWS::IAM::Role
+20210513T10:49:00   +    Properties:
+20210513T10:49:00   +      RoleName: !Sub '${VPCAlias}-LambdaRdsDeletion'
+20210513T10:49:00   +      AssumeRolePolicyDocument:
+20210513T10:49:00   +        Version: '2012-10-17'
+20210513T10:49:00   +        Statement:
+20210513T10:49:00   +        - Effect: Allow
+20210513T10:49:00   +          Principal:
+20210513T10:49:00   +              Service: lambda.amazonaws.com
+20210513T10:49:00   +          Action:
+20210513T10:49:00   +          - sts:AssumeRole
+20210513T10:49:00   +
+20210513T10:49:00   +  rdsDescribeSnapshot:
+20210513T10:49:00   +    Type: AWS::IAM::ManagedPolicy
+20210513T10:49:00   +    DependsOn:
+20210513T10:49:00   +      - lambdardsdeletion
+20210513T10:49:00   +    Properties:
+20210513T10:49:00   +      Description: To list all the rds db snapshots
+20210513T10:49:00   +      Path: /
+20210513T10:49:00   +      Roles:
+20210513T10:49:00   +        - !Ref lambdardsdeletion
+20210513T10:49:00   +      ManagedPolicyName:  !Sub '${VPCAlias}-RdsDescribeSnapshot'
+20210513T10:49:00   +      PolicyDocument:
+20210513T10:49:00   +        Version: 2012-10-17
+20210513T10:49:00   +        Statement:
+20210513T10:49:00   +          - Sid: DescribeRdsSnapshot
+20210513T10:49:00   +            Effect: Allow
+20210513T10:49:00   +            Action:
+20210513T10:49:00   +              - rds:ListTagsForResource
+20210513T10:49:00   +              - rds:DescribeDBSnapshots
+20210513T10:49:00   +            Resource:
+20210513T10:49:00   +              - Fn::Sub: "arn:${AWS::Partition}:rds:${AWS::Region}:${AWS::AccountId}:snapshot:*"
+20210513T10:49:00   +          - Sid: SendSnsNotification
+20210513T10:49:00   +            Effect: Allow
+20210513T10:49:00   +            Action:
+20210513T10:49:00   +             - "sns:Publish"
+20210513T10:49:00   +            Resource:
+20210513T10:49:00   +             - Fn::Sub: "arn:${AWS::Partition}:sns:${AWS::Region}:${AWS::AccountId}:DB-MSSQL-SNS"
+20210513T10:49:00   +             - Fn::Sub: "arn:${AWS::Partition}:sns:${AWS::Region}:${AWS::AccountId}:DB-MySQL-SNS"
+20210513T10:49:00   +             - Fn::Sub: "arn:${AWS::Partition}:sns:${AWS::Region}:${AWS::AccountId}:DB-ORACLE-SNS"
+20210513T10:49:00   +             - Fn::Sub: "arn:${AWS::Partition}:sns:${AWS::Region}:${AWS::AccountId}:DB-POSTGRES-SNS"
+20210513T10:49:00   +
+20210513T10:49:00   +          - Sid: DeleteRdsSnapshot
+20210513T10:49:00   +            Effect: Allow
+20210513T10:49:00   +            Action:
+20210513T10:49:00   +              - "rds:DeleteDBSnapshot"
+20210513T10:49:00   +            Resource:
+20210513T10:49:00   +              - Fn::Sub: "arn:${AWS::Partition}:rds:${AWS::Region}:${AWS::AccountId}:snapshot:*"
+20210513T10:49:00   +            Condition:
+20210513T10:49:00   +              StringEquals:
+20210513T10:49:00   +                rds:snapshot-tag/support-group:
+20210513T10:49:00   +                  - "dig-tech-cts-cloud-db-support-team"
+20210513T10:49:00   +              StringNotEquals:
+20210513T10:49:00   +                rds:snapshot-tag/retention-days:
+20210513T10:49:00   +                  - ""
+20210513T10:49:00   +  RdsSnapshotDeletionLambdaFunction:
+20210513T10:49:00   +    DependsOn:
+20210513T10:49:00   +      - rdsDescribeSnapshot
+20210513T10:49:00   +      - lambdardsdeletion
+20210513T10:49:00   +    Type: AWS::Lambda::Function
+20210513T10:49:00   +    Description: To remove the rds snapshot based on Condition
+20210513T10:49:00   +    Properties:
+20210513T10:49:00   +      FunctionName: !Sub '${VPCAlias}-rds-manualsnapshot-deletion'
+20210513T10:49:00   +      Code:
+20210513T10:49:00   +        S3Bucket: !If [ HasCodeBucketName, !Ref CodeBucketName, { "Fn::ImportValue" : !Sub "s3:${VPCAlias}:code:name" } ]
+20210513T10:49:00   +        S3Key: !Ref SnapshotDeletionS3File
+20210513T10:49:00   +      Runtime: python3.8
+20210513T10:49:00   +      Timeout: 300
+20210513T10:49:00   +      MemorySize: 1024
+20210513T10:49:00   +      Handler:
+20210513T10:49:00   +        Fn::Join:
+20210513T10:49:00   +          - ''
+20210513T10:49:00   +          - - Ref: SnapshotDeletionModuleName
+20210513T10:49:00   +            - ".lambda_handler"
+20210513T10:49:00   +      Role: !GetAtt
+20210513T10:49:00   +        - lambdardsdeletion
+20210513T10:49:00   +        - Arn
+20210513T10:49:00   +      Tags:
+20210513T10:49:00   +        - Key: support-group
+20210513T10:49:00   +          Value: dig-tech-cts-cloud-db-support-team
+20210513T10:49:00   +        - Key: 'Name'
+20210513T10:49:00   +          Value: !Sub 'rds-retention-days-policy-notification-${VPCAlias}'
+20210513T10:49:00   +        - Key: 'env'
+20210513T10:49:00   +          Value: 'test'
+20210513T10:49:00   +        - Key: 'uai'
+20210513T10:49:00   +          Value: !Sub '${UAI}'
+20210513T10:49:00   +
+20210513T10:49:00   +  LambdaRDSSnapshotDeletionScheduledRule:
+20210513T10:49:00   +    Type: AWS::Events::Rule
+20210513T10:49:00   +    Description: Triggers the RDS Snapshot Deletion Lambda Function
+20210513T10:49:00   +    Properties:
+20210513T10:49:00   +
+20210513T10:49:00   +      ScheduleExpression: !Join
+20210513T10:49:00   +        - ''
+20210513T10:49:00   +        - - cron(
+20210513T10:49:00   +          -  0/5 * * * ? *
+20210513T10:49:00   +          - )
+20210513T10:49:00   +      State: "ENABLED"
+20210513T10:49:00   +      Targets:
+20210513T10:49:00   +        -
+20210513T10:49:00   +          Arn:
+20210513T10:49:00   +            Fn::GetAtt:
+20210513T10:49:00   +              - "RdsSnapshotDeletionLambdaFunction"
+20210513T10:49:00   +              - "Arn"
+20210513T10:49:00   +          Id: "TargetLambdaV1"
+20210513T10:49:00   +  PermissionForDeletionEventsToInvokeLambda:
+20210513T10:49:00   +    Type: AWS::Lambda::Permission
+20210513T10:49:00   +    Properties:
+20210513T10:49:00   +      FunctionName: !Ref "RdsSnapshotDeletionLambdaFunction"
+20210513T10:49:00   +      Action: "lambda:InvokeFunction"
+20210513T10:49:00   +      Principal: "events.amazonaws.com"
+20210513T10:49:00   +      SourceArn:
+20210513T10:49:00   +        Fn::GetAtt:
+20210513T10:49:00   +          - "LambdaRDSSnapshotDeletionScheduledRule"
+20210513T10:49:00   +          - "Arn"
+20210513T10:49:00   +
+20210513T10:49:00   +  RdsSnapshotNotificationLambdaFunction:
+20210513T10:49:00   +    DependsOn:
+20210513T10:49:00   +      - rdsDescribeSnapshot
+20210513T10:49:00   +      - lambdardsdeletion
+20210513T10:49:00   +    Type: AWS::Lambda::Function
+20210513T10:49:00   +    Description: Send Notification to user
+20210513T10:49:00   +    Properties:
+20210513T10:49:00   +      FunctionName: !Sub '${VPCAlias}-rds-retention-days-policy-notification'
+20210513T10:49:00   +      Code:
+20210513T10:49:00   +        S3Bucket: !If [ HasCodeBucketName, !Ref CodeBucketName, { "Fn::ImportValue" : !Sub "s3:${VPCAlias}:code:name" } ]
+20210513T10:49:00   +        S3Key: !Ref  SnapshotRetentionDaysS3File
+20210513T10:49:00   +      Runtime: python3.8
+20210513T10:49:00   +      Timeout: 900
+20210513T10:49:00   +      MemorySize: 1024
+20210513T10:49:00   +      Handler:
+20210513T10:49:00   +        Fn::Join:
+20210513T10:49:00   +          - ''
+20210513T10:49:00   +          - - Ref: SnapshotRetentionDaysModuleName
+20210513T10:49:00   +            - ".lambda_handler"
+20210513T10:49:00   +      Role: !GetAtt
+20210513T10:49:00   +        - lambdardsdeletion
+20210513T10:49:00   +        - Arn
+20210513T10:49:00   +      Tags:
+20210513T10:49:00   +        - Key: support-group
+20210513T10:49:00   +          Value: dig-tech-cts-cloud-db-support-team
+20210513T10:49:00   +        - Key: 'Name'
+20210513T10:49:00   +          Value: !Sub 'rds-retention-days-policy-notification-${VPCAlias}'
+20210513T10:49:00   +        - Key: 'env'
+20210513T10:49:00   +          Value: 'test'
+20210513T10:49:00   +        - Key: 'uai'
+20210513T10:49:00   +          Value: !Sub '${UAI}'
+20210513T10:49:00   +
+20210513T10:49:00   +
+20210513T10:49:00   +
+20210513T10:49:00   +  LambdaRetentionDaysNotificationScheduledRule:
+20210513T10:49:00   +    Type: AWS::Events::Rule
+20210513T10:49:00   +    Description: Triggers the Retention days tag policy notification Lambda Function
+20210513T10:49:00   +    Properties:
+20210513T10:49:00   +
+20210513T10:49:00   +      ScheduleExpression: !Join
+20210513T10:49:00   +        - ''
+20210513T10:49:00   +        - - cron(
+20210513T10:49:00   +          -  0/10 * * * ? *
+20210513T10:49:00   +          - )
+20210513T10:49:00   +      State: "ENABLED"
+20210513T10:49:00   +      Targets:
+20210513T10:49:00   +        -
+20210513T10:49:00   +          Arn:
+20210513T10:49:00   +            Fn::GetAtt:
+20210513T10:49:00   +              - "RdsSnapshotNotificationLambdaFunction"
+20210513T10:49:00   +              - "Arn"
+20210513T10:49:00   +          Id: "TargetLambdaV1"
+20210513T10:49:00   +  PermissionForNotificationEventsToInvokeLambda:
+20210513T10:49:00   +    Type: AWS::Lambda::Permission
+20210513T10:49:00   +    Properties:
+20210513T10:49:00   +      FunctionName: !Ref "RdsSnapshotNotificationLambdaFunction"
+20210513T10:49:00   +      Action: "lambda:InvokeFunction"
+20210513T10:49:00   +      Principal: "events.amazonaws.com"
+20210513T10:49:00   +      SourceArn:
+20210513T10:49:00   +        Fn::GetAtt:
+20210513T10:49:00   +          - "LambdaRetentionDaysNotificationScheduledRule"
+20210513T10:49:00   +          - "Arn"
+20210513T10:49:00   +
+20210513T10:49:00   +
+20210513T10:49:00   +
+20210513T10:49:00   +
+20210513T10:49:00   +
+20210513T10:49:00   Parameters diff:
+20210513T10:49:00   +---
+20210513T10:49:00   +CodeBucketName: ''
+20210513T10:49:00   +SnapshotDeletionModuleName: rds-manualsnapshot-deletion
+20210513T10:49:00   +SnapshotDeletionS3File: lambda/rds-manualsnapshot-deletion/1/rds-manualsnapshot-deletion.zip
+20210513T10:49:00   +SnapshotRetentionDaysModuleName: rds-retention-days-policy-notification
+20210513T10:49:00   +SnapshotRetentionDaysS3File: lambda/rds-retention-days-policy-notification/1/rds-retention-days-policy-notification.zip
+20210513T10:49:00   +UAI: UAI3036792
+20210513T10:49:00   +VPCAlias: pilot
+20210513T10:49:00   No stack found
+20210513T10:49:00   Create stack (y/n)? y
+20210513T10:49:00   2021-05-13 10:46:56 +0000 dbss-manualsnapshotdeletions-pilot AWS::CloudFormation::Stack CREATE_IN_PROGRESS User Initiated
+20210513T10:49:00   2021-05-13 10:47:01 +0000 lambdardsdeletion AWS::IAM::Role CREATE_IN_PROGRESS
+20210513T10:49:00   2021-05-13 10:47:02 +0000 lambdardsdeletion AWS::IAM::Role CREATE_IN_PROGRESS Resource creation Initiated
+20210513T10:49:00   2021-05-13 10:47:16 +0000 lambdardsdeletion AWS::IAM::Role CREATE_COMPLETE
+20210513T10:49:00   2021-05-13 10:47:19 +0000 rdsDescribeSnapshot AWS::IAM::ManagedPolicy CREATE_IN_PROGRESS
+20210513T10:49:00   2021-05-13 10:47:19 +0000 rdsDescribeSnapshot AWS::IAM::ManagedPolicy CREATE_IN_PROGRESS Resource creation Initiated
+20210513T10:49:00   2021-05-13 10:47:32 +0000 rdsDescribeSnapshot AWS::IAM::ManagedPolicy CREATE_COMPLETE
+20210513T10:49:00   2021-05-13 10:47:34 +0000 RdsSnapshotDeletionLambdaFunction AWS::Lambda::Function CREATE_IN_PROGRESS
+20210513T10:49:00   2021-05-13 10:47:34 +0000 RdsSnapshotNotificationLambdaFunction AWS::Lambda::Function CREATE_IN_PROGRESS
+20210513T10:49:00   2021-05-13 10:47:36 +0000 RdsSnapshotNotificationLambdaFunction AWS::Lambda::Function CREATE_IN_PROGRESS Resource creation Initiated
+20210513T10:49:00   2021-05-13 10:47:36 +0000 RdsSnapshotDeletionLambdaFunction AWS::Lambda::Function CREATE_IN_PROGRESS Resource creation Initiated
+20210513T10:49:00   2021-05-13 10:47:39 +0000 RdsSnapshotNotificationLambdaFunction AWS::Lambda::Function CREATE_COMPLETE
+20210513T10:49:00   2021-05-13 10:47:40 +0000 RdsSnapshotDeletionLambdaFunction AWS::Lambda::Function CREATE_COMPLETE
+20210513T10:49:00   2021-05-13 10:47:42 +0000 LambdaRetentionDaysNotificationScheduledRule AWS::Events::Rule CREATE_IN_PROGRESS
+20210513T10:49:00   2021-05-13 10:47:43 +0000 LambdaRetentionDaysNotificationScheduledRule AWS::Events::Rule CREATE_IN_PROGRESS Resource creation Initiated
+20210513T10:49:00   2021-05-13 10:47:43 +0000 LambdaRDSSnapshotDeletionScheduledRule AWS::Events::Rule CREATE_IN_PROGRESS
+20210513T10:49:00   2021-05-13 10:47:44 +0000 LambdaRDSSnapshotDeletionScheduledRule AWS::Events::Rule CREATE_IN_PROGRESS Resource creation Initiated
+20210513T10:49:00   2021-05-13 10:48:43 +0000 LambdaRetentionDaysNotificationScheduledRule AWS::Events::Rule CREATE_COMPLETE
+20210513T10:49:00   2021-05-13 10:48:45 +0000 LambdaRDSSnapshotDeletionScheduledRule AWS::Events::Rule CREATE_COMPLETE
+20210513T10:49:00   2021-05-13 10:48:46 +0000 PermissionForNotificationEventsToInvokeLambda AWS::Lambda::Permission CREATE_IN_PROGRESS
+20210513T10:49:00   2021-05-13 10:48:46 +0000 PermissionForNotificationEventsToInvokeLambda AWS::Lambda::Permission CREATE_IN_PROGRESS Resource creation Initiated
+20210513T10:49:00   2021-05-13 10:48:47 +0000 PermissionForDeletionEventsToInvokeLambda AWS::Lambda::Permission CREATE_IN_PROGRESS
+20210513T10:49:00   2021-05-13 10:48:47 +0000 PermissionForDeletionEventsToInvokeLambda AWS::Lambda::Permission CREATE_IN_PROGRESS Resource creation Initiated
+20210513T10:49:00   2021-05-13 10:48:56 +0000 PermissionForNotificationEventsToInvokeLambda AWS::Lambda::Permission CREATE_COMPLETE
+20210513T10:49:00   2021-05-13 10:48:57 +0000 PermissionForDeletionEventsToInvokeLambda AWS::Lambda::Permission CREATE_COMPLETE
+20210513T10:49:00   2021-05-13 10:48:59 +0000 dbss-manualsnapshotdeletions-pilot AWS::CloudFormation::Stack CREATE_COMPLETE
+20210513T10:49:00   Successfully deployed the base Infra stack...
+20210519T15:01:04   Uploading the rds-manual-snapshot-deletion lambda to S3
+20210519T15:01:04  Executing lambda_export1=$( uploads3.sh "pilot" "rds-manualsnapshot-deletion" "lambda/rds-manualsnapshot-deletion" | tail -n 1 )
+20210519T15:01:05   Successfully uploaded rds-manual-snapshot-deletion  lambda to S3...
+20210519T15:01:05  Executing lambda_export2=$(uploads3.sh "pilot" "rds-retention-days-policy-notification" "lambda/rds-retention-days-policy-notification" | tail -n 1 )
+20210519T15:01:05   Successfully uploaded rds-retention-days-policy-notification lambda to S3...
+20210519T15:01:31   Uploading the rds-manual-snapshot-deletion lambda to S3
+20210519T15:01:31  Executing lambda_export1=$( uploads3.sh "pilot" "rds-manualsnapshot-deletion" "lambda/rds-manualsnapshot-deletion" | tail -n 1 )
+20210519T15:01:32   Successfully uploaded rds-manual-snapshot-deletion  lambda to S3...
+20210519T15:01:32  Executing lambda_export2=$(uploads3.sh "pilot" "rds-retention-days-policy-notification" "lambda/rds-retention-days-policy-notification" | tail -n 1 )
+20210519T15:01:32   Successfully uploaded rds-retention-days-policy-notification lambda to S3...
+20210519T15:01:58   Uploading the rds-manual-snapshot-deletion lambda to S3
+20210519T15:01:58  Executing lambda_export1=$( uploads3.sh "pilot" "rds-manualsnapshot-deletion" "lambda/rds-manualsnapshot-deletion" | tail -n 1 )
+20210519T15:02:02   Successfully uploaded rds-manual-snapshot-deletion  lambda to S3...
+20210519T15:02:02  Executing lambda_export2=$(uploads3.sh "pilot" "rds-retention-days-policy-notification" "lambda/rds-retention-days-policy-notification" | tail -n 1 )
+20210519T15:02:06   Successfully uploaded rds-retention-days-policy-notification lambda to S3...
+20210519T15:02:44   Deploying the  Stack which creates the Lambda function for Manual snapshot deletion
+20210519T15:02:44   Getting OS Details
+20210519T15:02:44   Stack: dbss-manualsnapshotdeletions-pilot; Writing params to file parameters/pilot/dbss_manualsnapshotdeletions_pilot.yml
+20210519T15:02:44   Writing output to stack_master.yml
+20210519T15:02:44   Successfully Generated the Stack_master.yml for Lambda Function...
+20210519T15:02:47   Stack: dbss-manualsnapshotdeletions-pilot; Writing params to file parameters/pilot/dbss_manualsnapshotdeletions_pilot.yml
+20210519T15:02:47   Writing output to stack_master.yml
+20210519T15:02:47   
+20210519T15:02:47   Fetching stack information: |==========================================================================================================================================|
+20210519T15:02:47   REGION    | STACK_NAME                         | STACK_STATUS | DIFFERENT
+20210519T15:02:47   ----------|------------------------------------|--------------|----------
+20210519T15:02:47   us-east-1 | dbss-manualsnapshotdeletions-pilot |              | Yes
+20210519T15:02:47   * No echo parameters can't be diffed
+20210519T15:02:47   Successfully Stack_master Status forLambda Function...
+20210519T15:04:53   Stack: dbss-manualsnapshotdeletions-pilot; Writing params to file parameters/pilot/dbss_manualsnapshotdeletions_pilot.yml
+20210519T15:04:53   Writing output to stack_master.yml
+20210519T15:04:53   
+20210519T15:04:53   Fetching stack information: |==========================================================================================================================================|
+20210519T15:04:53   REGION    | STACK_NAME                         | STACK_STATUS | DIFFERENT
+20210519T15:04:53   ----------|------------------------------------|--------------|----------
+20210519T15:04:53   us-east-1 | dbss-manualsnapshotdeletions-pilot |              | Yes
+20210519T15:04:53   * No echo parameters can't be diffed
+20210519T15:04:53   Executing apply on dbss-manualsnapshotdeletions-pilot in us-east-1
+20210519T15:04:53   Stack diff:
+20210519T15:04:53   +---
+20210519T15:04:53   +AWSTemplateFormatVersion: "2010-09-09"
+20210519T15:04:53   +Description: AWS CloudFormation Template to deploy Manual snapshot deletion and notification lambda function.
+20210519T15:04:53   +Metadata:
+20210519T15:04:53   +  AWS::CloudFormation::Interface:
+20210519T15:04:53   +    ParameterGroups:
+20210519T15:04:53   +      ################################################
+20210519T15:04:53   +      # Lambda Function
+20210519T15:04:53   +      #############################################
+20210519T15:04:53   +      - Label:
+20210519T15:04:53   +          default: Input Details for Lambda Function's
+20210519T15:04:53   +        Parameters:
+20210519T15:04:53   +          - VPCAlias
+20210519T15:04:53   +          - CodeBucketName
+20210519T15:04:53   +      ###########################################
+20210519T15:04:53   +      # rds-manualsnapshot-deletion Lambda
+20210519T15:04:53   +      ###########################################
+20210519T15:04:53   +      - Label:
+20210519T15:04:53   +          default: rds-manualsnapshot-deletion Lambda Configuration
+20210519T15:04:53   +        Parameters:
+20210519T15:04:53   +          - SnapshotDeletionS3File
+20210519T15:04:53   +          - SnapshotDeletionModuleName
+20210519T15:04:53   +      ###########################################
+20210519T15:04:53   +      # rds-retention-days-policy-notification Lambda
+20210519T15:04:53   +      ###########################################
+20210519T15:04:53   +      - Label:
+20210519T15:04:53   +          default: rds-retention-days-policy-notification Lambda Configuration
+20210519T15:04:53   +        Parameters:
+20210519T15:04:53   +          - SnapshotRetentionDaysS3File
+20210519T15:04:53   +          - SnapshotRetentionDaysModuleName
+20210519T15:04:53   +Parameters:
+20210519T15:04:53   +  VPCAlias:
+20210519T15:04:53   +    Description: "The VPC alias within this account. This is logical label identifying execution environment."
+20210519T15:04:53   +    Default: ""
+20210519T15:04:53   +    Type: String
+20210519T15:04:53   +  UAI:
+20210519T15:04:53   +    Type: String
+20210519T15:04:53   +    Description: The UAI of the application being charged for usage.
+20210519T15:04:53   +    ConstraintDescription: The UAI must be valid, but specified as 'UAI' or 'uai' followed by 7 digits
+20210519T15:04:53   +    AllowedPattern: '^(UAI|uai)[0-9]*$'
+20210519T15:04:53   +    MinLength: 10
+20210519T15:04:53   +    MaxLength: 10
+20210519T15:04:53   +    Default: 'UAI3036792'
+20210519T15:04:53   +
+20210519T15:04:53   +  CodeBucketName:
+20210519T15:04:54   +    Description: "Optional. Name of S3 bucket with Lambda code and scripts are stored"
+20210519T15:04:54   +    Default: ""
+20210519T15:04:54   +    Type: String
+20210519T15:04:54   +  SnapshotDeletionS3File:
+20210519T15:04:54   +    Description: The name of the ZIP package
+20210519T15:04:54   +    Default: "lambda/rds-manualsnapshot-deletion/rds-manualsnapshot-deletion.zip"
+20210519T15:04:54   +    Type: String
+20210519T15:04:54   +  SnapshotDeletionModuleName:
+20210519T15:04:54   +    Description: The name of the Python file
+20210519T15:04:54   +    Default: "rds-manualsnapshot-deletion"
+20210519T15:04:54   +    Type: String
+20210519T15:04:54   +  SnapshotRetentionDaysS3File:
+20210519T15:04:54   +    Description: The name of the ZIP package
+20210519T15:04:54   +    Default: "lambda/rds-retention-days-policy-notification/rds-retention-days-policy-notification.zip"
+20210519T15:04:54   +    Type: String
+20210519T15:04:54   +  SnapshotRetentionDaysModuleName:
+20210519T15:04:54   +    Description: The name of the Python file
+20210519T15:04:54   +    Default: "rds-retention-days-policy-notification"
+20210519T15:04:54   +    Type: String
+20210519T15:04:54   +
+20210519T15:04:54   +Conditions:
+20210519T15:04:54   +  HasCodeBucketName: !Not [!Equals [!Ref CodeBucketName, '']]
+20210519T15:04:54   +Resources:
+20210519T15:04:54   +  lambdardsdeletion:
+20210519T15:04:54   +    Type: AWS::IAM::Role
+20210519T15:04:54   +    Properties:
+20210519T15:04:54   +      RoleName: !Sub '${VPCAlias}-LambdaRdsDeletion'
+20210519T15:04:54   +      AssumeRolePolicyDocument:
+20210519T15:04:54   +        Version: '2012-10-17'
+20210519T15:04:54   +        Statement:
+20210519T15:04:54   +        - Effect: Allow
+20210519T15:04:54   +          Principal:
+20210519T15:04:54   +              Service: lambda.amazonaws.com
+20210519T15:04:54   +          Action:
+20210519T15:04:54   +          - sts:AssumeRole
+20210519T15:04:54   +
+20210519T15:04:54   +  rdsDescribeSnapshot:
+20210519T15:04:54   +    Type: AWS::IAM::ManagedPolicy
+20210519T15:04:54   +    DependsOn:
+20210519T15:04:54   +      - lambdardsdeletion
+20210519T15:04:54   +    Properties:
+20210519T15:04:54   +      Description: To list all the rds db snapshots
+20210519T15:04:54   +      Path: /
+20210519T15:04:54   +      Roles:
+20210519T15:04:54   +        - !Ref lambdardsdeletion
+20210519T15:04:54   +      ManagedPolicyName:  !Sub '${VPCAlias}-RdsDescribeSnapshot'
+20210519T15:04:54   +      PolicyDocument:
+20210519T15:04:54   +        Version: 2012-10-17
+20210519T15:04:54   +        Statement:
+20210519T15:04:54   +          - Sid: DescribeRdsSnapshot
+20210519T15:04:54   +            Effect: Allow
+20210519T15:04:54   +            Action:
+20210519T15:04:54   +              - rds:ListTagsForResource
+20210519T15:04:54   +              - rds:DescribeDBSnapshots
+20210519T15:04:54   +            Resource:
+20210519T15:04:54   +              - Fn::Sub: "arn:${AWS::Partition}:rds:${AWS::Region}:${AWS::AccountId}:snapshot:*"
+20210519T15:04:54   +          - Sid: SendSnsNotification
+20210519T15:04:54   +            Effect: Allow
+20210519T15:04:54   +            Action:
+20210519T15:04:54   +             - "sns:Publish"
+20210519T15:04:54   +            Resource:
+20210519T15:04:54   +             - Fn::Sub: "arn:${AWS::Partition}:sns:${AWS::Region}:${AWS::AccountId}:DB-MSSQL-SNS"
+20210519T15:04:54   +             - Fn::Sub: "arn:${AWS::Partition}:sns:${AWS::Region}:${AWS::AccountId}:DB-MySQL-SNS"
+20210519T15:04:54   +             - Fn::Sub: "arn:${AWS::Partition}:sns:${AWS::Region}:${AWS::AccountId}:DB-ORACLE-SNS"
+20210519T15:04:54   +             - Fn::Sub: "arn:${AWS::Partition}:sns:${AWS::Region}:${AWS::AccountId}:DB-POSTGRES-SNS"
+20210519T15:04:54   +
+20210519T15:04:54   +          - Sid: DeleteRdsSnapshot
+20210519T15:04:54   +            Effect: Allow
+20210519T15:04:54   +            Action:
+20210519T15:04:54   +              - "rds:DeleteDBSnapshot"
+20210519T15:04:54   +            Resource:
+20210519T15:04:54   +              - Fn::Sub: "arn:${AWS::Partition}:rds:${AWS::Region}:${AWS::AccountId}:snapshot:*"
+20210519T15:04:54   +            Condition:
+20210519T15:04:54   +              StringEquals:
+20210519T15:04:54   +                rds:snapshot-tag/support-group:
+20210519T15:04:54   +                  - "dig-tech-cts-cloud-db-support-team"
+20210519T15:04:54   +              StringNotEquals:
+20210519T15:04:54   +                rds:snapshot-tag/retention-days:
+20210519T15:04:54   +                  - ""
+20210519T15:04:54   +  RdsSnapshotDeletionLambdaFunction:
+20210519T15:04:54   +    DependsOn:
+20210519T15:04:54   +      - rdsDescribeSnapshot
+20210519T15:04:54   +      - lambdardsdeletion
+20210519T15:04:54   +    Type: AWS::Lambda::Function
+20210519T15:04:54   +    Description: To remove the rds snapshot based on Condition
+20210519T15:04:54   +    Properties:
+20210519T15:04:54   +      FunctionName: !Sub '${VPCAlias}-rds-manualsnapshot-deletion'
+20210519T15:04:54   +      Code:
+20210519T15:04:54   +        S3Bucket: !If [ HasCodeBucketName, !Ref CodeBucketName, { "Fn::ImportValue" : !Sub "s3:${VPCAlias}:code:name" } ]
+20210519T15:04:54   +        S3Key: !Ref SnapshotDeletionS3File
+20210519T15:04:54   +      Runtime: python3.8
+20210519T15:04:54   +      Timeout: 300
+20210519T15:04:54   +      MemorySize: 1024
+20210519T15:04:54   +      Handler:
+20210519T15:04:54   +        Fn::Join:
+20210519T15:04:54   +          - ''
+20210519T15:04:54   +          - - Ref: SnapshotDeletionModuleName
+20210519T15:04:54   +            - ".lambda_handler"
+20210519T15:04:54   +      Role: !GetAtt
+20210519T15:04:54   +        - lambdardsdeletion
+20210519T15:04:54   +        - Arn
+20210519T15:04:54   +      Tags:
+20210519T15:04:54   +        - Key: support-group
+20210519T15:04:54   +          Value: dig-tech-cts-cloud-db-support-team
+20210519T15:04:54   +        - Key: 'Name'
+20210519T15:04:54   +          Value: !Sub 'rds-retention-days-policy-notification-${VPCAlias}'
+20210519T15:04:54   +        - Key: 'env'
+20210519T15:04:54   +          Value: 'test'
+20210519T15:04:54   +        - Key: 'uai'
+20210519T15:04:54   +          Value: !Sub '${UAI}'
+20210519T15:04:54   +
+20210519T15:04:54   +  LambdaRDSSnapshotDeletionScheduledRule:
+20210519T15:04:54   +    Type: AWS::Events::Rule
+20210519T15:04:54   +    Description: Triggers the RDS Snapshot Deletion Lambda Function
+20210519T15:04:54   +    Properties:
+20210519T15:04:54   +
+20210519T15:04:54   +      ScheduleExpression: !Join
+20210519T15:04:54   +        - ''
+20210519T15:04:54   +        - - cron(
+20210519T15:04:54   +          -  0/5 * * * ? *
+20210519T15:04:54   +          - )
+20210519T15:04:54   +      State: "ENABLED"
+20210519T15:04:54   +      Targets:
+20210519T15:04:54   +        -
+20210519T15:04:54   +          Arn:
+20210519T15:04:54   +            Fn::GetAtt:
+20210519T15:04:54   +              - "RdsSnapshotDeletionLambdaFunction"
+20210519T15:04:54   +              - "Arn"
+20210519T15:04:54   +          Id: "TargetLambdaV1"
+20210519T15:04:54   +  PermissionForDeletionEventsToInvokeLambda:
+20210519T15:04:54   +    Type: AWS::Lambda::Permission
+20210519T15:04:54   +    Properties:
+20210519T15:04:54   +      FunctionName: !Ref "RdsSnapshotDeletionLambdaFunction"
+20210519T15:04:54   +      Action: "lambda:InvokeFunction"
+20210519T15:04:54   +      Principal: "events.amazonaws.com"
+20210519T15:04:54   +      SourceArn:
+20210519T15:04:54   +        Fn::GetAtt:
+20210519T15:04:54   +          - "LambdaRDSSnapshotDeletionScheduledRule"
+20210519T15:04:54   +          - "Arn"
+20210519T15:04:54   +
+20210519T15:04:54   +  RdsSnapshotNotificationLambdaFunction:
+20210519T15:04:54   +    DependsOn:
+20210519T15:04:54   +      - rdsDescribeSnapshot
+20210519T15:04:54   +      - lambdardsdeletion
+20210519T15:04:54   +    Type: AWS::Lambda::Function
+20210519T15:04:54   +    Description: Send Notification to user
+20210519T15:04:54   +    Properties:
+20210519T15:04:54   +      FunctionName: !Sub '${VPCAlias}-rds-retention-days-policy-notification'
+20210519T15:04:54   +      Code:
+20210519T15:04:54   +        S3Bucket: !If [ HasCodeBucketName, !Ref CodeBucketName, { "Fn::ImportValue" : !Sub "s3:${VPCAlias}:code:name" } ]
+20210519T15:04:54   +        S3Key: !Ref  SnapshotRetentionDaysS3File
+20210519T15:04:54   +      Runtime: python3.8
+20210519T15:04:54   +      Timeout: 900
+20210519T15:04:54   +      MemorySize: 1024
+20210519T15:04:54   +      Handler:
+20210519T15:04:54   +        Fn::Join:
+20210519T15:04:54   +          - ''
+20210519T15:04:54   +          - - Ref: SnapshotRetentionDaysModuleName
+20210519T15:04:54   +            - ".lambda_handler"
+20210519T15:04:54   +      Role: !GetAtt
+20210519T15:04:54   +        - lambdardsdeletion
+20210519T15:04:54   +        - Arn
+20210519T15:04:54   +      Tags:
+20210519T15:04:54   +        - Key: support-group
+20210519T15:04:54   +          Value: dig-tech-cts-cloud-db-support-team
+20210519T15:04:54   +        - Key: 'Name'
+20210519T15:04:54   +          Value: !Sub 'rds-retention-days-policy-notification-${VPCAlias}'
+20210519T15:04:54   +        - Key: 'env'
+20210519T15:04:54   +          Value: 'test'
+20210519T15:04:54   +        - Key: 'uai'
+20210519T15:04:54   +          Value: !Sub '${UAI}'
+20210519T15:04:54   +
+20210519T15:04:54   +
+20210519T15:04:54   +
+20210519T15:04:54   +  LambdaRetentionDaysNotificationScheduledRule:
+20210519T15:04:54   +    Type: AWS::Events::Rule
+20210519T15:04:54   +    Description: Triggers the Retention days tag policy notification Lambda Function
+20210519T15:04:54   +    Properties:
+20210519T15:04:54   +
+20210519T15:04:54   +      ScheduleExpression: !Join
+20210519T15:04:54   +        - ''
+20210519T15:04:54   +        - - cron(
+20210519T15:04:54   +          -  0/10 * * * ? *
+20210519T15:04:54   +          - )
+20210519T15:04:54   +      State: "ENABLED"
+20210519T15:04:54   +      Targets:
+20210519T15:04:54   +        -
+20210519T15:04:54   +          Arn:
+20210519T15:04:54   +            Fn::GetAtt:
+20210519T15:04:54   +              - "RdsSnapshotNotificationLambdaFunction"
+20210519T15:04:54   +              - "Arn"
+20210519T15:04:54   +          Id: "TargetLambdaV1"
+20210519T15:04:54   +  PermissionForNotificationEventsToInvokeLambda:
+20210519T15:04:54   +    Type: AWS::Lambda::Permission
+20210519T15:04:54   +    Properties:
+20210519T15:04:54   +      FunctionName: !Ref "RdsSnapshotNotificationLambdaFunction"
+20210519T15:04:54   +      Action: "lambda:InvokeFunction"
+20210519T15:04:54   +      Principal: "events.amazonaws.com"
+20210519T15:04:54   +      SourceArn:
+20210519T15:04:54   +        Fn::GetAtt:
+20210519T15:04:54   +          - "LambdaRetentionDaysNotificationScheduledRule"
+20210519T15:04:54   +          - "Arn"
+20210519T15:04:54   +
+20210519T15:04:54   +
+20210519T15:04:54   +
+20210519T15:04:54   +
+20210519T15:04:54   +
+20210519T15:04:54   Parameters diff:
+20210519T15:04:54   +---
+20210519T15:04:54   +CodeBucketName: ''
+20210519T15:04:54   +SnapshotDeletionModuleName: rds-manualsnapshot-deletion
+20210519T15:04:54   +SnapshotDeletionS3File: lambda/rds-manualsnapshot-deletion/1/rds-manualsnapshot-deletion.zip
+20210519T15:04:54   +SnapshotRetentionDaysModuleName: rds-retention-days-policy-notification
+20210519T15:04:54   +SnapshotRetentionDaysS3File: lambda/rds-retention-days-policy-notification/1/rds-retention-days-policy-notification.zip
+20210519T15:04:54   +UAI: UAI3036792
+20210519T15:04:54   +VPCAlias: pilot
+20210519T15:04:54   No stack found
+20210519T15:04:54   Create stack (y/n)? y
+20210519T15:04:54   2021-05-19 15:02:49 +0000 dbss-manualsnapshotdeletions-pilot AWS::CloudFormation::Stack CREATE_IN_PROGRESS User Initiated
+20210519T15:04:54   2021-05-19 15:02:55 +0000 lambdardsdeletion AWS::IAM::Role CREATE_IN_PROGRESS
+20210519T15:04:54   2021-05-19 15:02:55 +0000 lambdardsdeletion AWS::IAM::Role CREATE_IN_PROGRESS Resource creation Initiated
+20210519T15:04:54   2021-05-19 15:03:09 +0000 lambdardsdeletion AWS::IAM::Role CREATE_COMPLETE
+20210519T15:04:54   2021-05-19 15:03:12 +0000 rdsDescribeSnapshot AWS::IAM::ManagedPolicy CREATE_IN_PROGRESS
+20210519T15:04:54   2021-05-19 15:03:12 +0000 rdsDescribeSnapshot AWS::IAM::ManagedPolicy CREATE_IN_PROGRESS Resource creation Initiated
+20210519T15:04:54   2021-05-19 15:03:26 +0000 rdsDescribeSnapshot AWS::IAM::ManagedPolicy CREATE_COMPLETE
+20210519T15:04:54   2021-05-19 15:03:28 +0000 RdsSnapshotNotificationLambdaFunction AWS::Lambda::Function CREATE_IN_PROGRESS
+20210519T15:04:54   2021-05-19 15:03:28 +0000 RdsSnapshotDeletionLambdaFunction AWS::Lambda::Function CREATE_IN_PROGRESS
+20210519T15:04:54   2021-05-19 15:03:30 +0000 RdsSnapshotDeletionLambdaFunction AWS::Lambda::Function CREATE_IN_PROGRESS Resource creation Initiated
+20210519T15:04:54   2021-05-19 15:03:30 +0000 RdsSnapshotNotificationLambdaFunction AWS::Lambda::Function CREATE_IN_PROGRESS Resource creation Initiated
+20210519T15:04:54   2021-05-19 15:03:33 +0000 RdsSnapshotNotificationLambdaFunction AWS::Lambda::Function CREATE_COMPLETE
+20210519T15:04:54   2021-05-19 15:03:33 +0000 RdsSnapshotDeletionLambdaFunction AWS::Lambda::Function CREATE_COMPLETE
+20210519T15:04:54   2021-05-19 15:03:36 +0000 LambdaRDSSnapshotDeletionScheduledRule AWS::Events::Rule CREATE_IN_PROGRESS
+20210519T15:04:54   2021-05-19 15:03:37 +0000 LambdaRDSSnapshotDeletionScheduledRule AWS::Events::Rule CREATE_IN_PROGRESS Resource creation Initiated
+20210519T15:04:54   2021-05-19 15:03:38 +0000 LambdaRetentionDaysNotificationScheduledRule AWS::Events::Rule CREATE_IN_PROGRESS
+20210519T15:04:54   2021-05-19 15:03:38 +0000 LambdaRetentionDaysNotificationScheduledRule AWS::Events::Rule CREATE_IN_PROGRESS Resource creation Initiated
+20210519T15:04:54   2021-05-19 15:04:38 +0000 LambdaRDSSnapshotDeletionScheduledRule AWS::Events::Rule CREATE_COMPLETE
+20210519T15:04:54   2021-05-19 15:04:39 +0000 LambdaRetentionDaysNotificationScheduledRule AWS::Events::Rule CREATE_COMPLETE
+20210519T15:04:54   2021-05-19 15:04:40 +0000 PermissionForDeletionEventsToInvokeLambda AWS::Lambda::Permission CREATE_IN_PROGRESS
+20210519T15:04:54   2021-05-19 15:04:40 +0000 PermissionForDeletionEventsToInvokeLambda AWS::Lambda::Permission CREATE_IN_PROGRESS Resource creation Initiated
+20210519T15:04:54   2021-05-19 15:04:41 +0000 PermissionForNotificationEventsToInvokeLambda AWS::Lambda::Permission CREATE_IN_PROGRESS
+20210519T15:04:54   2021-05-19 15:04:41 +0000 PermissionForNotificationEventsToInvokeLambda AWS::Lambda::Permission CREATE_IN_PROGRESS Resource creation Initiated
+20210519T15:04:54   2021-05-19 15:04:51 +0000 PermissionForDeletionEventsToInvokeLambda AWS::Lambda::Permission CREATE_COMPLETE
+20210519T15:04:54   2021-05-19 15:04:52 +0000 PermissionForNotificationEventsToInvokeLambda AWS::Lambda::Permission CREATE_COMPLETE
+20210519T15:04:54   2021-05-19 15:04:53 +0000 dbss-manualsnapshotdeletions-pilot AWS::CloudFormation::Stack CREATE_COMPLETE
+20210519T15:04:54   Successfully deployed the base Infra stack...
+20210519T15:12:08   Uploading the rds-manual-snapshot-deletion lambda to S3
+20210519T15:12:08  Executing lambda_export1=$( uploads3.sh "pilot" "rds-manualsnapshot-deletion" "lambda/rds-manualsnapshot-deletion" | tail -n 1 )
+20210519T15:12:12   Successfully uploaded rds-manual-snapshot-deletion  lambda to S3...
+20210519T15:12:12  Executing lambda_export2=$(uploads3.sh "pilot" "rds-retention-days-policy-notification" "lambda/rds-retention-days-policy-notification" | tail -n 1 )
+20210519T15:12:16   Successfully uploaded rds-retention-days-policy-notification lambda to S3...
+20210519T15:12:16   Deploying the  Stack which creates the Lambda function for Manual snapshot deletion
+20210519T15:12:16   Getting OS Details
+20210519T15:12:16   Stack: dbss-manualsnapshotdeletions-pilot; Writing params to file parameters/pilot/dbss_manualsnapshotdeletions_pilot.yml
+20210519T15:12:16   Writing output to stack_master.yml
+20210519T15:12:16   Successfully Generated the Stack_master.yml for Lambda Function...
+20210519T15:12:18   Stack: dbss-manualsnapshotdeletions-pilot; Writing params to file parameters/pilot/dbss_manualsnapshotdeletions_pilot.yml
+20210519T15:12:18   Writing output to stack_master.yml
+20210519T15:12:18   
+20210519T15:12:18   Fetching stack information: |==========================================================================================================================================|
+20210519T15:12:18   REGION    | STACK_NAME                         | STACK_STATUS | DIFFERENT
+20210519T15:12:18   ----------|------------------------------------|--------------|----------
+20210519T15:12:18   us-east-1 | dbss-manualsnapshotdeletions-pilot |              | Yes
+20210519T15:12:18   * No echo parameters can't be diffed
+20210519T15:12:18   Successfully Stack_master Status forLambda Function...
+20210519T15:14:28   Stack: dbss-manualsnapshotdeletions-pilot; Writing params to file parameters/pilot/dbss_manualsnapshotdeletions_pilot.yml
+20210519T15:14:28   Writing output to stack_master.yml
+20210519T15:14:28   
+20210519T15:14:28   Fetching stack information: |==========================================================================================================================================|
+20210519T15:14:28   REGION    | STACK_NAME                         | STACK_STATUS | DIFFERENT
+20210519T15:14:28   ----------|------------------------------------|--------------|----------
+20210519T15:14:28   us-east-1 | dbss-manualsnapshotdeletions-pilot |              | Yes
+20210519T15:14:28   * No echo parameters can't be diffed
+20210519T15:14:28   Executing apply on dbss-manualsnapshotdeletions-pilot in us-east-1
+20210519T15:14:28   Stack diff:
+20210519T15:14:28   +---
+20210519T15:14:28   +AWSTemplateFormatVersion: "2010-09-09"
+20210519T15:14:28   +Description: AWS CloudFormation Template to deploy Manual snapshot deletion and notification lambda function.
+20210519T15:14:28   +Metadata:
+20210519T15:14:28   +  AWS::CloudFormation::Interface:
+20210519T15:14:28   +    ParameterGroups:
+20210519T15:14:28   +      ################################################
+20210519T15:14:28   +      # Lambda Function
+20210519T15:14:28   +      #############################################
+20210519T15:14:28   +      - Label:
+20210519T15:14:28   +          default: Input Details for Lambda Function's
+20210519T15:14:28   +        Parameters:
+20210519T15:14:28   +          - VPCAlias
+20210519T15:14:28   +          - CodeBucketName
+20210519T15:14:28   +      ###########################################
+20210519T15:14:28   +      # rds-manualsnapshot-deletion Lambda
+20210519T15:14:28   +      ###########################################
+20210519T15:14:28   +      - Label:
+20210519T15:14:28   +          default: rds-manualsnapshot-deletion Lambda Configuration
+20210519T15:14:28   +        Parameters:
+20210519T15:14:28   +          - SnapshotDeletionS3File
+20210519T15:14:28   +          - SnapshotDeletionModuleName
+20210519T15:14:28   +      ###########################################
+20210519T15:14:28   +      # rds-retention-days-policy-notification Lambda
+20210519T15:14:28   +      ###########################################
+20210519T15:14:28   +      - Label:
+20210519T15:14:28   +          default: rds-retention-days-policy-notification Lambda Configuration
+20210519T15:14:28   +        Parameters:
+20210519T15:14:28   +          - SnapshotRetentionDaysS3File
+20210519T15:14:28   +          - SnapshotRetentionDaysModuleName
+20210519T15:14:28   +Parameters:
+20210519T15:14:28   +  VPCAlias:
+20210519T15:14:28   +    Description: "The VPC alias within this account. This is logical label identifying execution environment."
+20210519T15:14:28   +    Default: ""
+20210519T15:14:28   +    Type: String
+20210519T15:14:28   +  UAI:
+20210519T15:14:28   +    Type: String
+20210519T15:14:28   +    Description: The UAI of the application being charged for usage.
+20210519T15:14:28   +    ConstraintDescription: The UAI must be valid, but specified as 'UAI' or 'uai' followed by 7 digits
+20210519T15:14:28   +    AllowedPattern: '^(UAI|uai)[0-9]*$'
+20210519T15:14:28   +    MinLength: 10
+20210519T15:14:28   +    MaxLength: 10
+20210519T15:14:28   +    Default: 'UAI3036792'
+20210519T15:14:28   +
+20210519T15:14:28   +  CodeBucketName:
+20210519T15:14:28   +    Description: "Optional. Name of S3 bucket with Lambda code and scripts are stored"
+20210519T15:14:28   +    Default: ""
+20210519T15:14:28   +    Type: String
+20210519T15:14:28   +  SnapshotDeletionS3File:
+20210519T15:14:28   +    Description: The name of the ZIP package
+20210519T15:14:28   +    Default: "lambda/rds-manualsnapshot-deletion/rds-manualsnapshot-deletion.zip"
+20210519T15:14:28   +    Type: String
+20210519T15:14:28   +  SnapshotDeletionModuleName:
+20210519T15:14:28   +    Description: The name of the Python file
+20210519T15:14:28   +    Default: "rds-manualsnapshot-deletion"
+20210519T15:14:28   +    Type: String
+20210519T15:14:28   +  SnapshotRetentionDaysS3File:
+20210519T15:14:28   +    Description: The name of the ZIP package
+20210519T15:14:28   +    Default: "lambda/rds-retention-days-policy-notification/rds-retention-days-policy-notification.zip"
+20210519T15:14:28   +    Type: String
+20210519T15:14:28   +  SnapshotRetentionDaysModuleName:
+20210519T15:14:28   +    Description: The name of the Python file
+20210519T15:14:28   +    Default: "rds-retention-days-policy-notification"
+20210519T15:14:28   +    Type: String
+20210519T15:14:28   +
+20210519T15:14:28   +Conditions:
+20210519T15:14:28   +  HasCodeBucketName: !Not [!Equals [!Ref CodeBucketName, '']]
+20210519T15:14:28   +Resources:
+20210519T15:14:28   +  lambdardsdeletion:
+20210519T15:14:28   +    Type: AWS::IAM::Role
+20210519T15:14:28   +    Properties:
+20210519T15:14:28   +      RoleName: !Sub '${VPCAlias}-LambdaRdsDeletion'
+20210519T15:14:28   +      AssumeRolePolicyDocument:
+20210519T15:14:28   +        Version: '2012-10-17'
+20210519T15:14:28   +        Statement:
+20210519T15:14:28   +        - Effect: Allow
+20210519T15:14:28   +          Principal:
+20210519T15:14:28   +              Service: lambda.amazonaws.com
+20210519T15:14:28   +          Action:
+20210519T15:14:28   +          - sts:AssumeRole
+20210519T15:14:28   +
+20210519T15:14:28   +  rdsDescribeSnapshot:
+20210519T15:14:28   +    Type: AWS::IAM::ManagedPolicy
+20210519T15:14:28   +    DependsOn:
+20210519T15:14:28   +      - lambdardsdeletion
+20210519T15:14:28   +    Properties:
+20210519T15:14:28   +      Description: To list all the rds db snapshots
+20210519T15:14:28   +      Path: /
+20210519T15:14:28   +      Roles:
+20210519T15:14:28   +        - !Ref lambdardsdeletion
+20210519T15:14:28   +      ManagedPolicyName:  !Sub '${VPCAlias}-RdsDescribeSnapshot'
+20210519T15:14:28   +      PolicyDocument:
+20210519T15:14:28   +        Version: 2012-10-17
+20210519T15:14:28   +        Statement:
+20210519T15:14:28   +          - Sid: DescribeRdsSnapshot
+20210519T15:14:28   +            Effect: Allow
+20210519T15:14:28   +            Action:
+20210519T15:14:28   +              - rds:ListTagsForResource
+20210519T15:14:28   +              - rds:DescribeDBSnapshots
+20210519T15:14:28   +            Resource:
+20210519T15:14:28   +              - Fn::Sub: "arn:${AWS::Partition}:rds:${AWS::Region}:${AWS::AccountId}:snapshot:*"
+20210519T15:14:28   +          - Sid: SendSnsNotification
+20210519T15:14:28   +            Effect: Allow
+20210519T15:14:28   +            Action:
+20210519T15:14:28   +             - "sns:Publish"
+20210519T15:14:28   +            Resource:
+20210519T15:14:28   +             - Fn::Sub: "arn:${AWS::Partition}:sns:${AWS::Region}:${AWS::AccountId}:DB-MSSQL-SNS"
+20210519T15:14:28   +             - Fn::Sub: "arn:${AWS::Partition}:sns:${AWS::Region}:${AWS::AccountId}:DB-MySQL-SNS"
+20210519T15:14:28   +             - Fn::Sub: "arn:${AWS::Partition}:sns:${AWS::Region}:${AWS::AccountId}:DB-ORACLE-SNS"
+20210519T15:14:28   +             - Fn::Sub: "arn:${AWS::Partition}:sns:${AWS::Region}:${AWS::AccountId}:DB-POSTGRESQL-SNS"
+20210519T15:14:28   +
+20210519T15:14:28   +          - Sid: DeleteRdsSnapshot
+20210519T15:14:28   +            Effect: Allow
+20210519T15:14:28   +            Action:
+20210519T15:14:28   +              - "rds:DeleteDBSnapshot"
+20210519T15:14:28   +            Resource:
+20210519T15:14:28   +              - Fn::Sub: "arn:${AWS::Partition}:rds:${AWS::Region}:${AWS::AccountId}:snapshot:*"
+20210519T15:14:28   +            Condition:
+20210519T15:14:28   +              StringEquals:
+20210519T15:14:28   +                rds:snapshot-tag/support-group:
+20210519T15:14:28   +                  - "dig-tech-cts-cloud-db-support-team"
+20210519T15:14:28   +              StringNotEquals:
+20210519T15:14:28   +                rds:snapshot-tag/retention-days:
+20210519T15:14:28   +                  - ""
+20210519T15:14:28   +  RdsSnapshotDeletionLambdaFunction:
+20210519T15:14:28   +    DependsOn:
+20210519T15:14:28   +      - rdsDescribeSnapshot
+20210519T15:14:28   +      - lambdardsdeletion
+20210519T15:14:28   +    Type: AWS::Lambda::Function
+20210519T15:14:28   +    Description: To remove the rds snapshot based on Condition
+20210519T15:14:28   +    Properties:
+20210519T15:14:28   +      FunctionName: !Sub '${VPCAlias}-rds-manualsnapshot-deletion'
+20210519T15:14:28   +      Code:
+20210519T15:14:28   +        S3Bucket: !If [ HasCodeBucketName, !Ref CodeBucketName, { "Fn::ImportValue" : !Sub "s3:${VPCAlias}:code:name" } ]
+20210519T15:14:28   +        S3Key: !Ref SnapshotDeletionS3File
+20210519T15:14:28   +      Runtime: python3.8
+20210519T15:14:28   +      Timeout: 300
+20210519T15:14:28   +      MemorySize: 1024
+20210519T15:14:28   +      Handler:
+20210519T15:14:28   +        Fn::Join:
+20210519T15:14:28   +          - ''
+20210519T15:14:28   +          - - Ref: SnapshotDeletionModuleName
+20210519T15:14:28   +            - ".lambda_handler"
+20210519T15:14:28   +      Role: !GetAtt
+20210519T15:14:28   +        - lambdardsdeletion
+20210519T15:14:28   +        - Arn
+20210519T15:14:28   +      Tags:
+20210519T15:14:28   +        - Key: support-group
+20210519T15:14:28   +          Value: dig-tech-cts-cloud-db-support-team
+20210519T15:14:28   +        - Key: 'Name'
+20210519T15:14:28   +          Value: !Sub 'rds-retention-days-policy-notification-${VPCAlias}'
+20210519T15:14:28   +        - Key: 'env'
+20210519T15:14:28   +          Value: 'test'
+20210519T15:14:28   +        - Key: 'uai'
+20210519T15:14:28   +          Value: !Sub '${UAI}'
+20210519T15:14:28   +
+20210519T15:14:28   +  LambdaRDSSnapshotDeletionScheduledRule:
+20210519T15:14:28   +    Type: AWS::Events::Rule
+20210519T15:14:28   +    Description: Triggers the RDS Snapshot Deletion Lambda Function
+20210519T15:14:28   +    Properties:
+20210519T15:14:28   +
+20210519T15:14:28   +      ScheduleExpression: !Join
+20210519T15:14:28   +        - ''
+20210519T15:14:28   +        - - cron(
+20210519T15:14:28   +          -  0/5 * * * ? *
+20210519T15:14:28   +          - )
+20210519T15:14:28   +      State: "ENABLED"
+20210519T15:14:28   +      Targets:
+20210519T15:14:28   +        -
+20210519T15:14:28   +          Arn:
+20210519T15:14:28   +            Fn::GetAtt:
+20210519T15:14:29   +              - "RdsSnapshotDeletionLambdaFunction"
+20210519T15:14:29   +              - "Arn"
+20210519T15:14:29   +          Id: "TargetLambdaV1"
+20210519T15:14:29   +  PermissionForDeletionEventsToInvokeLambda:
+20210519T15:14:29   +    Type: AWS::Lambda::Permission
+20210519T15:14:29   +    Properties:
+20210519T15:14:29   +      FunctionName: !Ref "RdsSnapshotDeletionLambdaFunction"
+20210519T15:14:29   +      Action: "lambda:InvokeFunction"
+20210519T15:14:29   +      Principal: "events.amazonaws.com"
+20210519T15:14:29   +      SourceArn:
+20210519T15:14:29   +        Fn::GetAtt:
+20210519T15:14:29   +          - "LambdaRDSSnapshotDeletionScheduledRule"
+20210519T15:14:29   +          - "Arn"
+20210519T15:14:29   +
+20210519T15:14:29   +  RdsSnapshotNotificationLambdaFunction:
+20210519T15:14:29   +    DependsOn:
+20210519T15:14:29   +      - rdsDescribeSnapshot
+20210519T15:14:29   +      - lambdardsdeletion
+20210519T15:14:29   +    Type: AWS::Lambda::Function
+20210519T15:14:29   +    Description: Send Notification to user
+20210519T15:14:29   +    Properties:
+20210519T15:14:29   +      FunctionName: !Sub '${VPCAlias}-rds-retention-days-policy-notification'
+20210519T15:14:29   +      Code:
+20210519T15:14:29   +        S3Bucket: !If [ HasCodeBucketName, !Ref CodeBucketName, { "Fn::ImportValue" : !Sub "s3:${VPCAlias}:code:name" } ]
+20210519T15:14:29   +        S3Key: !Ref  SnapshotRetentionDaysS3File
+20210519T15:14:29   +      Runtime: python3.8
+20210519T15:14:29   +      Timeout: 900
+20210519T15:14:29   +      MemorySize: 1024
+20210519T15:14:29   +      Handler:
+20210519T15:14:29   +        Fn::Join:
+20210519T15:14:29   +          - ''
+20210519T15:14:29   +          - - Ref: SnapshotRetentionDaysModuleName
+20210519T15:14:29   +            - ".lambda_handler"
+20210519T15:14:29   +      Role: !GetAtt
+20210519T15:14:29   +        - lambdardsdeletion
+20210519T15:14:29   +        - Arn
+20210519T15:14:29   +      Tags:
+20210519T15:14:29   +        - Key: support-group
+20210519T15:14:29   +          Value: dig-tech-cts-cloud-db-support-team
+20210519T15:14:29   +        - Key: 'Name'
+20210519T15:14:29   +          Value: !Sub 'rds-retention-days-policy-notification-${VPCAlias}'
+20210519T15:14:29   +        - Key: 'env'
+20210519T15:14:29   +          Value: 'test'
+20210519T15:14:29   +        - Key: 'uai'
+20210519T15:14:29   +          Value: !Sub '${UAI}'
+20210519T15:14:29   +
+20210519T15:14:29   +
+20210519T15:14:29   +
+20210519T15:14:29   +  LambdaRetentionDaysNotificationScheduledRule:
+20210519T15:14:29   +    Type: AWS::Events::Rule
+20210519T15:14:29   +    Description: Triggers the Retention days tag policy notification Lambda Function
+20210519T15:14:29   +    Properties:
+20210519T15:14:29   +
+20210519T15:14:29   +      ScheduleExpression: !Join
+20210519T15:14:29   +        - ''
+20210519T15:14:29   +        - - cron(
+20210519T15:14:29   +          -  0/10 * * * ? *
+20210519T15:14:29   +          - )
+20210519T15:14:29   +      State: "ENABLED"
+20210519T15:14:29   +      Targets:
+20210519T15:14:29   +        -
+20210519T15:14:29   +          Arn:
+20210519T15:14:29   +            Fn::GetAtt:
+20210519T15:14:29   +              - "RdsSnapshotNotificationLambdaFunction"
+20210519T15:14:29   +              - "Arn"
+20210519T15:14:29   +          Id: "TargetLambdaV1"
+20210519T15:14:29   +  PermissionForNotificationEventsToInvokeLambda:
+20210519T15:14:29   +    Type: AWS::Lambda::Permission
+20210519T15:14:29   +    Properties:
+20210519T15:14:29   +      FunctionName: !Ref "RdsSnapshotNotificationLambdaFunction"
+20210519T15:14:29   +      Action: "lambda:InvokeFunction"
+20210519T15:14:29   +      Principal: "events.amazonaws.com"
+20210519T15:14:29   +      SourceArn:
+20210519T15:14:29   +        Fn::GetAtt:
+20210519T15:14:29   +          - "LambdaRetentionDaysNotificationScheduledRule"
+20210519T15:14:29   +          - "Arn"
+20210519T15:14:29   +
+20210519T15:14:29   +
+20210519T15:14:29   +
+20210519T15:14:29   +
+20210519T15:14:29   +
+20210519T15:14:29   Parameters diff:
+20210519T15:14:29   +---
+20210519T15:14:29   +CodeBucketName: ''
+20210519T15:14:29   +SnapshotDeletionModuleName: rds-manualsnapshot-deletion
+20210519T15:14:29   +SnapshotDeletionS3File: lambda/rds-manualsnapshot-deletion/1/rds-manualsnapshot-deletion.zip
+20210519T15:14:29   +SnapshotRetentionDaysModuleName: rds-retention-days-policy-notification
+20210519T15:14:29   +SnapshotRetentionDaysS3File: lambda/rds-retention-days-policy-notification/1/rds-retention-days-policy-notification.zip
+20210519T15:14:29   +UAI: UAI3036792
+20210519T15:14:29   +VPCAlias: pilot
+20210519T15:14:29   No stack found
+20210519T15:14:29   Create stack (y/n)? y
+20210519T15:14:29   2021-05-19 15:12:21 +0000 dbss-manualsnapshotdeletions-pilot AWS::CloudFormation::Stack CREATE_IN_PROGRESS User Initiated
+20210519T15:14:29   2021-05-19 15:12:26 +0000 lambdardsdeletion AWS::IAM::Role CREATE_IN_PROGRESS
+20210519T15:14:29   2021-05-19 15:12:29 +0000 lambdardsdeletion AWS::IAM::Role CREATE_IN_PROGRESS Resource creation Initiated
+20210519T15:14:29   2021-05-19 15:12:43 +0000 lambdardsdeletion AWS::IAM::Role CREATE_COMPLETE
+20210519T15:14:29   2021-05-19 15:12:46 +0000 rdsDescribeSnapshot AWS::IAM::ManagedPolicy CREATE_IN_PROGRESS
+20210519T15:14:29   2021-05-19 15:12:46 +0000 rdsDescribeSnapshot AWS::IAM::ManagedPolicy CREATE_IN_PROGRESS Resource creation Initiated
+20210519T15:14:29   2021-05-19 15:13:00 +0000 rdsDescribeSnapshot AWS::IAM::ManagedPolicy CREATE_COMPLETE
+20210519T15:14:29   2021-05-19 15:13:03 +0000 RdsSnapshotNotificationLambdaFunction AWS::Lambda::Function CREATE_IN_PROGRESS
+20210519T15:14:29   2021-05-19 15:13:04 +0000 RdsSnapshotDeletionLambdaFunction AWS::Lambda::Function CREATE_IN_PROGRESS
+20210519T15:14:29   2021-05-19 15:13:05 +0000 RdsSnapshotNotificationLambdaFunction AWS::Lambda::Function CREATE_IN_PROGRESS Resource creation Initiated
+20210519T15:14:29   2021-05-19 15:13:06 +0000 RdsSnapshotDeletionLambdaFunction AWS::Lambda::Function CREATE_IN_PROGRESS Resource creation Initiated
+20210519T15:14:29   2021-05-19 15:13:08 +0000 RdsSnapshotNotificationLambdaFunction AWS::Lambda::Function CREATE_COMPLETE
+20210519T15:14:29   2021-05-19 15:13:08 +0000 RdsSnapshotDeletionLambdaFunction AWS::Lambda::Function CREATE_COMPLETE
+20210519T15:14:29   2021-05-19 15:13:11 +0000 LambdaRetentionDaysNotificationScheduledRule AWS::Events::Rule CREATE_IN_PROGRESS
+20210519T15:14:29   2021-05-19 15:13:12 +0000 LambdaRDSSnapshotDeletionScheduledRule AWS::Events::Rule CREATE_IN_PROGRESS
+20210519T15:14:29   2021-05-19 15:13:12 +0000 LambdaRetentionDaysNotificationScheduledRule AWS::Events::Rule CREATE_IN_PROGRESS Resource creation Initiated
+20210519T15:14:29   2021-05-19 15:13:12 +0000 LambdaRDSSnapshotDeletionScheduledRule AWS::Events::Rule CREATE_IN_PROGRESS Resource creation Initiated
+20210519T15:14:29   2021-05-19 15:14:13 +0000 LambdaRetentionDaysNotificationScheduledRule AWS::Events::Rule CREATE_COMPLETE
+20210519T15:14:29   2021-05-19 15:14:13 +0000 LambdaRDSSnapshotDeletionScheduledRule AWS::Events::Rule CREATE_COMPLETE
+20210519T15:14:29   2021-05-19 15:14:15 +0000 PermissionForNotificationEventsToInvokeLambda AWS::Lambda::Permission CREATE_IN_PROGRESS
+20210519T15:14:29   2021-05-19 15:14:15 +0000 PermissionForNotificationEventsToInvokeLambda AWS::Lambda::Permission CREATE_IN_PROGRESS Resource creation Initiated
+20210519T15:14:29   2021-05-19 15:14:15 +0000 PermissionForDeletionEventsToInvokeLambda AWS::Lambda::Permission CREATE_IN_PROGRESS
+20210519T15:14:29   2021-05-19 15:14:16 +0000 PermissionForDeletionEventsToInvokeLambda AWS::Lambda::Permission CREATE_IN_PROGRESS Resource creation Initiated
+20210519T15:14:29   2021-05-19 15:14:25 +0000 PermissionForNotificationEventsToInvokeLambda AWS::Lambda::Permission CREATE_COMPLETE
+20210519T15:14:29   2021-05-19 15:14:26 +0000 PermissionForDeletionEventsToInvokeLambda AWS::Lambda::Permission CREATE_COMPLETE
+20210519T15:14:29   2021-05-19 15:14:27 +0000 dbss-manualsnapshotdeletions-pilot AWS::CloudFormation::Stack CREATE_COMPLETE
+20210519T15:14:29   Successfully deployed the base Infra stack...
+20210519T15:46:14   Uploading the rds-manual-snapshot-deletion lambda to S3
+20210519T15:46:14  Executing lambda_export1=$( uploads3.sh "pilot" "rds-manualsnapshot-deletion" "lambda/rds-manualsnapshot-deletion" | tail -n 1 )
+20210519T15:46:18   Successfully uploaded rds-manual-snapshot-deletion  lambda to S3...
+20210519T15:46:18  Executing lambda_export2=$(uploads3.sh "pilot" "rds-retention-days-policy-notification" "lambda/rds-retention-days-policy-notification" | tail -n 1 )
+20210519T15:46:22   Successfully uploaded rds-retention-days-policy-notification lambda to S3...
+20210519T15:46:22   Deploying the  Stack which creates the Lambda function for Manual snapshot deletion
+20210519T15:46:22   Getting OS Details
+20210519T15:46:22   Stack: dbss-manualsnapshotdeletions-pilot; Writing params to file parameters/pilot/dbss_manualsnapshotdeletions_pilot.yml
+20210519T15:46:22   Writing output to stack_master.yml
+20210519T15:46:22   Successfully Generated the Stack_master.yml for Lambda Function...
+20210519T15:46:24   Stack: dbss-manualsnapshotdeletions-pilot; Writing params to file parameters/pilot/dbss_manualsnapshotdeletions_pilot.yml
+20210519T15:46:24   Writing output to stack_master.yml
+20210519T15:46:24   
+20210519T15:46:24   Fetching stack information: |==========================================================================================================================================|
+20210519T15:46:24   REGION    | STACK_NAME                         | STACK_STATUS | DIFFERENT
+20210519T15:46:24   ----------|------------------------------------|--------------|----------
+20210519T15:46:24   us-east-1 | dbss-manualsnapshotdeletions-pilot |              | Yes
+20210519T15:46:24   * No echo parameters can't be diffed
+20210519T15:46:24   Successfully Stack_master Status forLambda Function...
+20210519T15:48:31   Stack: dbss-manualsnapshotdeletions-pilot; Writing params to file parameters/pilot/dbss_manualsnapshotdeletions_pilot.yml
+20210519T15:48:31   Writing output to stack_master.yml
+20210519T15:48:31   
+20210519T15:48:31   Fetching stack information: |==========================================================================================================================================|
+20210519T15:48:31   REGION    | STACK_NAME                         | STACK_STATUS | DIFFERENT
+20210519T15:48:32   ----------|------------------------------------|--------------|----------
+20210519T15:48:32   us-east-1 | dbss-manualsnapshotdeletions-pilot |              | Yes
+20210519T15:48:32   * No echo parameters can't be diffed
+20210519T15:48:32   Executing apply on dbss-manualsnapshotdeletions-pilot in us-east-1
+20210519T15:48:32   Stack diff:
+20210519T15:48:32   +---
+20210519T15:48:32   +AWSTemplateFormatVersion: "2010-09-09"
+20210519T15:48:32   +Description: AWS CloudFormation Template to deploy Manual snapshot deletion and notification lambda function.
+20210519T15:48:32   +Metadata:
+20210519T15:48:32   +  AWS::CloudFormation::Interface:
+20210519T15:48:32   +    ParameterGroups:
+20210519T15:48:32   +      ################################################
+20210519T15:48:32   +      # Lambda Function
+20210519T15:48:32   +      #############################################
+20210519T15:48:32   +      - Label:
+20210519T15:48:32   +          default: Input Details for Lambda Function's
+20210519T15:48:32   +        Parameters:
+20210519T15:48:32   +          - VPCAlias
+20210519T15:48:32   +          - CodeBucketName
+20210519T15:48:32   +      ###########################################
+20210519T15:48:32   +      # rds-manualsnapshot-deletion Lambda
+20210519T15:48:32   +      ###########################################
+20210519T15:48:32   +      - Label:
+20210519T15:48:32   +          default: rds-manualsnapshot-deletion Lambda Configuration
+20210519T15:48:32   +        Parameters:
+20210519T15:48:32   +          - SnapshotDeletionS3File
+20210519T15:48:32   +          - SnapshotDeletionModuleName
+20210519T15:48:32   +      ###########################################
+20210519T15:48:32   +      # rds-retention-days-policy-notification Lambda
+20210519T15:48:32   +      ###########################################
+20210519T15:48:32   +      - Label:
+20210519T15:48:32   +          default: rds-retention-days-policy-notification Lambda Configuration
+20210519T15:48:32   +        Parameters:
+20210519T15:48:32   +          - SnapshotRetentionDaysS3File
+20210519T15:48:32   +          - SnapshotRetentionDaysModuleName
+20210519T15:48:32   +Parameters:
+20210519T15:48:32   +  VPCAlias:
+20210519T15:48:32   +    Description: "The VPC alias within this account. This is logical label identifying execution environment."
+20210519T15:48:32   +    Default: ""
+20210519T15:48:32   +    Type: String
+20210519T15:48:32   +  UAI:
+20210519T15:48:32   +    Type: String
+20210519T15:48:32   +    Description: The UAI of the application being charged for usage.
+20210519T15:48:32   +    ConstraintDescription: The UAI must be valid, but specified as 'UAI' or 'uai' followed by 7 digits
+20210519T15:48:32   +    AllowedPattern: '^(UAI|uai)[0-9]*$'
+20210519T15:48:32   +    MinLength: 10
+20210519T15:48:32   +    MaxLength: 10
+20210519T15:48:32   +    Default: 'UAI3036792'
+20210519T15:48:32   +
+20210519T15:48:32   +  CodeBucketName:
+20210519T15:48:32   +    Description: "Optional. Name of S3 bucket with Lambda code and scripts are stored"
+20210519T15:48:32   +    Default: ""
+20210519T15:48:32   +    Type: String
+20210519T15:48:32   +  SnapshotDeletionS3File:
+20210519T15:48:32   +    Description: The name of the ZIP package
+20210519T15:48:32   +    Default: "lambda/rds-manualsnapshot-deletion/rds-manualsnapshot-deletion.zip"
+20210519T15:48:32   +    Type: String
+20210519T15:48:32   +  SnapshotDeletionModuleName:
+20210519T15:48:32   +    Description: The name of the Python file
+20210519T15:48:32   +    Default: "rds-manualsnapshot-deletion"
+20210519T15:48:32   +    Type: String
+20210519T15:48:32   +  SnapshotRetentionDaysS3File:
+20210519T15:48:32   +    Description: The name of the ZIP package
+20210519T15:48:32   +    Default: "lambda/rds-retention-days-policy-notification/rds-retention-days-policy-notification.zip"
+20210519T15:48:32   +    Type: String
+20210519T15:48:32   +  SnapshotRetentionDaysModuleName:
+20210519T15:48:32   +    Description: The name of the Python file
+20210519T15:48:32   +    Default: "rds-retention-days-policy-notification"
+20210519T15:48:32   +    Type: String
+20210519T15:48:32   +
+20210519T15:48:32   +Conditions:
+20210519T15:48:32   +  HasCodeBucketName: !Not [!Equals [!Ref CodeBucketName, '']]
+20210519T15:48:32   +Resources:
+20210519T15:48:32   +  lambdardsdeletion:
+20210519T15:48:32   +    Type: AWS::IAM::Role
+20210519T15:48:32   +    Properties:
+20210519T15:48:32   +      RoleName: !Sub '${VPCAlias}-LambdaRdsDeletion'
+20210519T15:48:32   +      AssumeRolePolicyDocument:
+20210519T15:48:32   +        Version: '2012-10-17'
+20210519T15:48:32   +        Statement:
+20210519T15:48:32   +        - Effect: Allow
+20210519T15:48:32   +          Principal:
+20210519T15:48:32   +              Service: lambda.amazonaws.com
+20210519T15:48:32   +          Action:
+20210519T15:48:32   +          - sts:AssumeRole
+20210519T15:48:32   +
+20210519T15:48:32   +  rdsDescribeSnapshot:
+20210519T15:48:32   +    Type: AWS::IAM::ManagedPolicy
+20210519T15:48:32   +    DependsOn:
+20210519T15:48:32   +      - lambdardsdeletion
+20210519T15:48:32   +    Properties:
+20210519T15:48:32   +      Description: To list all the rds db snapshots
+20210519T15:48:32   +      Path: /
+20210519T15:48:32   +      Roles:
+20210519T15:48:32   +        - !Ref lambdardsdeletion
+20210519T15:48:32   +      ManagedPolicyName:  !Sub '${VPCAlias}-RdsDescribeSnapshot'
+20210519T15:48:32   +      PolicyDocument:
+20210519T15:48:32   +        Version: 2012-10-17
+20210519T15:48:32   +        Statement:
+20210519T15:48:32   +          - Sid: DescribeRdsSnapshot
+20210519T15:48:32   +            Effect: Allow
+20210519T15:48:32   +            Action:
+20210519T15:48:32   +              - rds:ListTagsForResource
+20210519T15:48:32   +              - rds:DescribeDBSnapshots
+20210519T15:48:32   +            Resource:
+20210519T15:48:32   +              - Fn::Sub: "arn:${AWS::Partition}:rds:${AWS::Region}:${AWS::AccountId}:snapshot:*"
+20210519T15:48:32   +          - Sid: SendSnsNotification
+20210519T15:48:32   +            Effect: Allow
+20210519T15:48:32   +            Action:
+20210519T15:48:32   +             - "sns:Publish"
+20210519T15:48:32   +            Resource:
+20210519T15:48:32   +             - Fn::Sub: "arn:${AWS::Partition}:sns:${AWS::Region}:${AWS::AccountId}:DB-MSSQL-SNS"
+20210519T15:48:32   +             - Fn::Sub: "arn:${AWS::Partition}:sns:${AWS::Region}:${AWS::AccountId}:DB-MySQL-SNS"
+20210519T15:48:32   +             - Fn::Sub: "arn:${AWS::Partition}:sns:${AWS::Region}:${AWS::AccountId}:DB-ORACLE-SNS"
+20210519T15:48:32   +             - Fn::Sub: "arn:${AWS::Partition}:sns:${AWS::Region}:${AWS::AccountId}:DB-POSTGRESQL-SNS"
+20210519T15:48:32   +
+20210519T15:48:32   +          - Sid: DeleteRdsSnapshot
+20210519T15:48:32   +            Effect: Allow
+20210519T15:48:32   +            Action:
+20210519T15:48:32   +              - "rds:DeleteDBSnapshot"
+20210519T15:48:32   +            Resource:
+20210519T15:48:32   +              - Fn::Sub: "arn:${AWS::Partition}:rds:${AWS::Region}:${AWS::AccountId}:snapshot:*"
+20210519T15:48:32   +            Condition:
+20210519T15:48:32   +              StringEquals:
+20210519T15:48:32   +                rds:snapshot-tag/support-group:
+20210519T15:48:32   +                  - "dig-tech-cts-cloud-db-support-team"
+20210519T15:48:32   +              StringNotEquals:
+20210519T15:48:32   +                rds:snapshot-tag/retention-days:
+20210519T15:48:32   +                  - ""
+20210519T15:48:32   +  RdsSnapshotDeletionLambdaFunction:
+20210519T15:48:32   +    DependsOn:
+20210519T15:48:32   +      - rdsDescribeSnapshot
+20210519T15:48:32   +      - lambdardsdeletion
+20210519T15:48:32   +    Type: AWS::Lambda::Function
+20210519T15:48:32   +    Description: To remove the rds snapshot based on Condition
+20210519T15:48:32   +    Properties:
+20210519T15:48:32   +      FunctionName: !Sub '${VPCAlias}-rds-manualsnapshot-deletion'
+20210519T15:48:32   +      Code:
+20210519T15:48:32   +        S3Bucket: !If [ HasCodeBucketName, !Ref CodeBucketName, { "Fn::ImportValue" : !Sub "s3:${VPCAlias}:code:name" } ]
+20210519T15:48:32   +        S3Key: !Ref SnapshotDeletionS3File
+20210519T15:48:32   +      Runtime: python3.8
+20210519T15:48:32   +      Timeout: 300
+20210519T15:48:32   +      MemorySize: 1024
+20210519T15:48:32   +      Handler:
+20210519T15:48:32   +        Fn::Join:
+20210519T15:48:32   +          - ''
+20210519T15:48:32   +          - - Ref: SnapshotDeletionModuleName
+20210519T15:48:32   +            - ".lambda_handler"
+20210519T15:48:32   +      Role: !GetAtt
+20210519T15:48:32   +        - lambdardsdeletion
+20210519T15:48:32   +        - Arn
+20210519T15:48:32   +      Tags:
+20210519T15:48:32   +        - Key: support-group
+20210519T15:48:32   +          Value: dig-tech-cts-cloud-db-support-team
+20210519T15:48:32   +        - Key: 'Name'
+20210519T15:48:32   +          Value: !Sub 'rds-retention-days-policy-notification-${VPCAlias}'
+20210519T15:48:32   +        - Key: 'env'
+20210519T15:48:32   +          Value: 'test'
+20210519T15:48:32   +        - Key: 'uai'
+20210519T15:48:32   +          Value: !Sub '${UAI}'
+20210519T15:48:32   +
+20210519T15:48:32   +  LambdaRDSSnapshotDeletionScheduledRule:
+20210519T15:48:32   +    Type: AWS::Events::Rule
+20210519T15:48:32   +    Description: Triggers the RDS Snapshot Deletion Lambda Function
+20210519T15:48:32   +    Properties:
+20210519T15:48:32   +
+20210519T15:48:32   +      ScheduleExpression: !Join
+20210519T15:48:32   +        - ''
+20210519T15:48:32   +        - - cron(
+20210519T15:48:32   +          -  0/5 * * * ? *
+20210519T15:48:32   +          - )
+20210519T15:48:32   +      State: "ENABLED"
+20210519T15:48:32   +      Targets:
+20210519T15:48:32   +        -
+20210519T15:48:32   +          Arn:
+20210519T15:48:32   +            Fn::GetAtt:
+20210519T15:48:32   +              - "RdsSnapshotDeletionLambdaFunction"
+20210519T15:48:32   +              - "Arn"
+20210519T15:48:32   +          Id: "TargetLambdaV1"
+20210519T15:48:32   +  PermissionForDeletionEventsToInvokeLambda:
+20210519T15:48:32   +    Type: AWS::Lambda::Permission
+20210519T15:48:32   +    Properties:
+20210519T15:48:32   +      FunctionName: !Ref "RdsSnapshotDeletionLambdaFunction"
+20210519T15:48:32   +      Action: "lambda:InvokeFunction"
+20210519T15:48:32   +      Principal: "events.amazonaws.com"
+20210519T15:48:32   +      SourceArn:
+20210519T15:48:32   +        Fn::GetAtt:
+20210519T15:48:32   +          - "LambdaRDSSnapshotDeletionScheduledRule"
+20210519T15:48:32   +          - "Arn"
+20210519T15:48:32   +
+20210519T15:48:32   +  RdsSnapshotNotificationLambdaFunction:
+20210519T15:48:32   +    DependsOn:
+20210519T15:48:32   +      - rdsDescribeSnapshot
+20210519T15:48:32   +      - lambdardsdeletion
+20210519T15:48:32   +    Type: AWS::Lambda::Function
+20210519T15:48:32   +    Description: Send Notification to user
+20210519T15:48:32   +    Properties:
+20210519T15:48:32   +      FunctionName: !Sub '${VPCAlias}-rds-retention-days-policy-notification'
+20210519T15:48:32   +      Code:
+20210519T15:48:32   +        S3Bucket: !If [ HasCodeBucketName, !Ref CodeBucketName, { "Fn::ImportValue" : !Sub "s3:${VPCAlias}:code:name" } ]
+20210519T15:48:32   +        S3Key: !Ref  SnapshotRetentionDaysS3File
+20210519T15:48:32   +      Runtime: python3.8
+20210519T15:48:32   +      Timeout: 900
+20210519T15:48:32   +      MemorySize: 1024
+20210519T15:48:32   +      Handler:
+20210519T15:48:32   +        Fn::Join:
+20210519T15:48:32   +          - ''
+20210519T15:48:32   +          - - Ref: SnapshotRetentionDaysModuleName
+20210519T15:48:32   +            - ".lambda_handler"
+20210519T15:48:32   +      Role: !GetAtt
+20210519T15:48:32   +        - lambdardsdeletion
+20210519T15:48:32   +        - Arn
+20210519T15:48:32   +      Tags:
+20210519T15:48:32   +        - Key: support-group
+20210519T15:48:32   +          Value: dig-tech-cts-cloud-db-support-team
+20210519T15:48:32   +        - Key: 'Name'
+20210519T15:48:32   +          Value: !Sub 'rds-retention-days-policy-notification-${VPCAlias}'
+20210519T15:48:32   +        - Key: 'env'
+20210519T15:48:32   +          Value: 'test'
+20210519T15:48:32   +        - Key: 'uai'
+20210519T15:48:32   +          Value: !Sub '${UAI}'
+20210519T15:48:32   +
+20210519T15:48:32   +
+20210519T15:48:32   +
+20210519T15:48:32   +  LambdaRetentionDaysNotificationScheduledRule:
+20210519T15:48:32   +    Type: AWS::Events::Rule
+20210519T15:48:32   +    Description: Triggers the Retention days tag policy notification Lambda Function
+20210519T15:48:32   +    Properties:
+20210519T15:48:32   +
+20210519T15:48:32   +      ScheduleExpression: !Join
+20210519T15:48:32   +        - ''
+20210519T15:48:32   +        - - cron(
+20210519T15:48:32   +          -  0/10 * * * ? *
+20210519T15:48:32   +          - )
+20210519T15:48:32   +      State: "ENABLED"
+20210519T15:48:32   +      Targets:
+20210519T15:48:32   +        -
+20210519T15:48:32   +          Arn:
+20210519T15:48:32   +            Fn::GetAtt:
+20210519T15:48:32   +              - "RdsSnapshotNotificationLambdaFunction"
+20210519T15:48:32   +              - "Arn"
+20210519T15:48:32   +          Id: "TargetLambdaV1"
+20210519T15:48:32   +  PermissionForNotificationEventsToInvokeLambda:
+20210519T15:48:32   +    Type: AWS::Lambda::Permission
+20210519T15:48:32   +    Properties:
+20210519T15:48:32   +      FunctionName: !Ref "RdsSnapshotNotificationLambdaFunction"
+20210519T15:48:32   +      Action: "lambda:InvokeFunction"
+20210519T15:48:32   +      Principal: "events.amazonaws.com"
+20210519T15:48:32   +      SourceArn:
+20210519T15:48:32   +        Fn::GetAtt:
+20210519T15:48:32   +          - "LambdaRetentionDaysNotificationScheduledRule"
+20210519T15:48:32   +          - "Arn"
+20210519T15:48:32   +
+20210519T15:48:32   +
+20210519T15:48:32   +
+20210519T15:48:32   +
+20210519T15:48:32   +
+20210519T15:48:32   Parameters diff:
+20210519T15:48:32   +---
+20210519T15:48:32   +CodeBucketName: ''
+20210519T15:48:32   +SnapshotDeletionModuleName: rds-manualsnapshot-deletion
+20210519T15:48:32   +SnapshotDeletionS3File: lambda/rds-manualsnapshot-deletion/1/rds-manualsnapshot-deletion.zip
+20210519T15:48:32   +SnapshotRetentionDaysModuleName: rds-retention-days-policy-notification
+20210519T15:48:32   +SnapshotRetentionDaysS3File: lambda/rds-retention-days-policy-notification/1/rds-retention-days-policy-notification.zip
+20210519T15:48:32   +UAI: UAI3036792
+20210519T15:48:32   +VPCAlias: pilot
+20210519T15:48:32   No stack found
+20210519T15:48:32   Create stack (y/n)? y
+20210519T15:48:32   2021-05-19 15:46:27 +0000 dbss-manualsnapshotdeletions-pilot AWS::CloudFormation::Stack CREATE_IN_PROGRESS User Initiated
+20210519T15:48:32   2021-05-19 15:46:32 +0000 lambdardsdeletion AWS::IAM::Role CREATE_IN_PROGRESS
+20210519T15:48:32   2021-05-19 15:46:33 +0000 lambdardsdeletion AWS::IAM::Role CREATE_IN_PROGRESS Resource creation Initiated
+20210519T15:48:32   2021-05-19 15:46:47 +0000 lambdardsdeletion AWS::IAM::Role CREATE_COMPLETE
+20210519T15:48:32   2021-05-19 15:46:49 +0000 rdsDescribeSnapshot AWS::IAM::ManagedPolicy CREATE_IN_PROGRESS
+20210519T15:48:32   2021-05-19 15:46:50 +0000 rdsDescribeSnapshot AWS::IAM::ManagedPolicy CREATE_IN_PROGRESS Resource creation Initiated
+20210519T15:48:32   2021-05-19 15:47:03 +0000 rdsDescribeSnapshot AWS::IAM::ManagedPolicy CREATE_COMPLETE
+20210519T15:48:32   2021-05-19 15:47:06 +0000 RdsSnapshotDeletionLambdaFunction AWS::Lambda::Function CREATE_IN_PROGRESS
+20210519T15:48:32   2021-05-19 15:47:07 +0000 RdsSnapshotNotificationLambdaFunction AWS::Lambda::Function CREATE_IN_PROGRESS
+20210519T15:48:32   2021-05-19 15:47:08 +0000 RdsSnapshotDeletionLambdaFunction AWS::Lambda::Function CREATE_IN_PROGRESS Resource creation Initiated
+20210519T15:48:32   2021-05-19 15:47:09 +0000 RdsSnapshotNotificationLambdaFunction AWS::Lambda::Function CREATE_IN_PROGRESS Resource creation Initiated
+20210519T15:48:32   2021-05-19 15:47:11 +0000 RdsSnapshotDeletionLambdaFunction AWS::Lambda::Function CREATE_COMPLETE
+20210519T15:48:32   2021-05-19 15:47:12 +0000 RdsSnapshotNotificationLambdaFunction AWS::Lambda::Function CREATE_COMPLETE
+20210519T15:48:32   2021-05-19 15:47:14 +0000 LambdaRDSSnapshotDeletionScheduledRule AWS::Events::Rule CREATE_IN_PROGRESS
+20210519T15:48:32   2021-05-19 15:47:15 +0000 LambdaRDSSnapshotDeletionScheduledRule AWS::Events::Rule CREATE_IN_PROGRESS Resource creation Initiated
+20210519T15:48:32   2021-05-19 15:47:15 +0000 LambdaRetentionDaysNotificationScheduledRule AWS::Events::Rule CREATE_IN_PROGRESS
+20210519T15:48:32   2021-05-19 15:47:16 +0000 LambdaRetentionDaysNotificationScheduledRule AWS::Events::Rule CREATE_IN_PROGRESS Resource creation Initiated
+20210519T15:48:32   2021-05-19 15:48:16 +0000 LambdaRDSSnapshotDeletionScheduledRule AWS::Events::Rule CREATE_COMPLETE
+20210519T15:48:32   2021-05-19 15:48:16 +0000 LambdaRetentionDaysNotificationScheduledRule AWS::Events::Rule CREATE_COMPLETE
+20210519T15:48:32   2021-05-19 15:48:18 +0000 PermissionForDeletionEventsToInvokeLambda AWS::Lambda::Permission CREATE_IN_PROGRESS
+20210519T15:48:32   2021-05-19 15:48:18 +0000 PermissionForDeletionEventsToInvokeLambda AWS::Lambda::Permission CREATE_IN_PROGRESS Resource creation Initiated
+20210519T15:48:32   2021-05-19 15:48:19 +0000 PermissionForNotificationEventsToInvokeLambda AWS::Lambda::Permission CREATE_IN_PROGRESS
+20210519T15:48:32   2021-05-19 15:48:19 +0000 PermissionForNotificationEventsToInvokeLambda AWS::Lambda::Permission CREATE_IN_PROGRESS Resource creation Initiated
+20210519T15:48:32   2021-05-19 15:48:29 +0000 PermissionForDeletionEventsToInvokeLambda AWS::Lambda::Permission CREATE_COMPLETE
+20210519T15:48:32   2021-05-19 15:48:29 +0000 PermissionForNotificationEventsToInvokeLambda AWS::Lambda::Permission CREATE_COMPLETE
+20210519T15:48:32   2021-05-19 15:48:31 +0000 dbss-manualsnapshotdeletions-pilot AWS::CloudFormation::Stack CREATE_COMPLETE
+20210519T15:48:32   Successfully deployed the base Infra stack...

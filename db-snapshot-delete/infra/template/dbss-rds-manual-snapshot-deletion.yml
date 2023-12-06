@@ -1,0 +1,252 @@
+---
+AWSTemplateFormatVersion: "2010-09-09"
+Description: AWS CloudFormation Template to deploy Manual snapshot deletion and notification lambda function.
+Metadata:
+  AWS::CloudFormation::Interface:
+    ParameterGroups:
+      ################################################
+      # Lambda Function
+      #############################################
+      - Label:
+          default: Input Details for Lambda Function's
+        Parameters:
+          - VPCAlias
+          - CodeBucketName
+      ###########################################
+      # rds-manualsnapshot-deletion Lambda
+      ###########################################    
+      - Label:
+          default: rds-manualsnapshot-deletion Lambda Configuration
+        Parameters:
+          - SnapshotDeletionS3File
+          - SnapshotDeletionModuleName
+      ###########################################
+      # rds-retention-days-policy-notification Lambda
+      ###########################################
+      - Label:
+          default: rds-retention-days-policy-notification Lambda Configuration
+        Parameters: 
+          - SnapshotRetentionDaysS3File
+          - SnapshotRetentionDaysModuleName
+Parameters:
+  VPCAlias:
+    Description: "The VPC alias within this account. This is logical label identifying execution environment."
+    Default: ""
+    Type: String
+  UAI:
+    Type: String
+    Description: The UAI of the application being charged for usage.
+    ConstraintDescription: The UAI must be valid, but specified as 'UAI' or 'uai' followed by 7 digits
+    AllowedPattern: '^(UAI|uai)[0-9]*$'
+    MinLength: 10
+    MaxLength: 10
+    Default: 'UAI3036792'
+
+  CodeBucketName:
+    Description: "Optional. Name of S3 bucket with Lambda code and scripts are stored"
+    Default: ""
+    Type: String
+  SnapshotDeletionS3File:
+    Description: The name of the ZIP package
+    Default: "lambda/rds-manualsnapshot-deletion/rds-manualsnapshot-deletion.zip"
+    Type: String
+  SnapshotDeletionModuleName:
+    Description: The name of the Python file
+    Default: "rds-manualsnapshot-deletion"
+    Type: String
+  SnapshotRetentionDaysS3File:
+    Description: The name of the ZIP package
+    Default: "lambda/rds-retention-days-policy-notification/rds-retention-days-policy-notification.zip"
+    Type: String
+  SnapshotRetentionDaysModuleName:
+    Description: The name of the Python file
+    Default: "rds-retention-days-policy-notification"
+    Type: String
+
+Conditions:
+  HasCodeBucketName: !Not [!Equals [!Ref CodeBucketName, '']]
+Resources:
+  lambdardsdeletion:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: !Sub '${VPCAlias}-LambdaRdsDeletion'
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+        - Effect: Allow
+          Principal:
+              Service: lambda.amazonaws.com
+          Action:
+          - sts:AssumeRole
+
+  rdsDescribeSnapshot:
+    Type: AWS::IAM::ManagedPolicy
+    DependsOn:
+      - lambdardsdeletion      
+    Properties:
+      Description: To list all the rds db snapshots
+      Path: /
+      Roles:
+        - !Ref lambdardsdeletion
+      ManagedPolicyName:  !Sub '${VPCAlias}-RdsDescribeSnapshot'
+      PolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          - Sid: DescribeRdsSnapshot
+            Effect: Allow
+            Action:
+              - rds:ListTagsForResource
+              - rds:DescribeDBSnapshots
+            Resource:
+              - Fn::Sub: "arn:${AWS::Partition}:rds:${AWS::Region}:${AWS::AccountId}:snapshot:*"
+          - Sid: SendSnsNotification
+            Effect: Allow
+            Action:
+             - "sns:Publish"
+            Resource: 
+             - Fn::Sub: "arn:${AWS::Partition}:sns:${AWS::Region}:${AWS::AccountId}:DB-MSSQL-SNS"
+             - Fn::Sub: "arn:${AWS::Partition}:sns:${AWS::Region}:${AWS::AccountId}:DB-MySQL-SNS"
+             - Fn::Sub: "arn:${AWS::Partition}:sns:${AWS::Region}:${AWS::AccountId}:DB-ORACLE-SNS"
+             - Fn::Sub: "arn:${AWS::Partition}:sns:${AWS::Region}:${AWS::AccountId}:DB-POSTGRESQL-SNS"
+
+          - Sid: DeleteRdsSnapshot
+            Effect: Allow
+            Action:
+              - "rds:DeleteDBSnapshot"
+            Resource:
+              - Fn::Sub: "arn:${AWS::Partition}:rds:${AWS::Region}:${AWS::AccountId}:snapshot:*"
+            Condition:
+              StringEquals:
+                rds:snapshot-tag/support-group:
+                  - "dig-tech-cts-cloud-db-support-team"
+              StringNotEquals:
+                rds:snapshot-tag/retention-days:
+                  - ""
+  RdsSnapshotDeletionLambdaFunction:
+    DependsOn: 
+      - rdsDescribeSnapshot
+      - lambdardsdeletion
+    Type: AWS::Lambda::Function                 
+    Description: To remove the rds snapshot based on Condition
+    Properties: 
+      FunctionName: !Sub '${VPCAlias}-rds-manualsnapshot-deletion'
+      Code:
+        S3Bucket: !If [ HasCodeBucketName, !Ref CodeBucketName, { "Fn::ImportValue" : !Sub "s3:${VPCAlias}:code:name" } ] 
+        S3Key: !Ref SnapshotDeletionS3File
+      Runtime: python3.8
+      Timeout: 300
+      MemorySize: 1024
+      Handler: 
+        Fn::Join:
+          - ''
+          - - Ref: SnapshotDeletionModuleName
+            - ".lambda_handler"
+      Role: !GetAtt 
+        - lambdardsdeletion
+        - Arn
+      Tags:
+        - Key: support-group
+          Value: dig-tech-cts-cloud-db-support-team
+        - Key: 'Name'
+          Value: !Sub 'rds-retention-days-policy-notification-${VPCAlias}'
+        - Key: 'env'
+          Value: 'test'
+        - Key: 'uai'
+          Value: !Sub '${UAI}'
+          
+  LambdaRDSSnapshotDeletionScheduledRule: 
+    Type: AWS::Events::Rule
+    Description: Triggers the RDS Snapshot Deletion Lambda Function
+    Properties:
+    
+      ScheduleExpression: !Join 
+        - ''
+        - - cron(
+          -  0/5 * * * ? *
+          - )
+      State: "ENABLED"
+      Targets: 
+        - 
+          Arn: 
+            Fn::GetAtt: 
+              - "RdsSnapshotDeletionLambdaFunction"
+              - "Arn"
+          Id: "TargetLambdaV1"
+  PermissionForDeletionEventsToInvokeLambda: 
+    Type: AWS::Lambda::Permission
+    Properties: 
+      FunctionName: !Ref "RdsSnapshotDeletionLambdaFunction"
+      Action: "lambda:InvokeFunction"
+      Principal: "events.amazonaws.com"
+      SourceArn: 
+        Fn::GetAtt: 
+          - "LambdaRDSSnapshotDeletionScheduledRule"
+          - "Arn"
+
+  RdsSnapshotNotificationLambdaFunction:
+    DependsOn: 
+      - rdsDescribeSnapshot
+      - lambdardsdeletion
+    Type: AWS::Lambda::Function                 
+    Description: Send Notification to user 
+    Properties: 
+      FunctionName: !Sub '${VPCAlias}-rds-retention-days-policy-notification'
+      Code:
+        S3Bucket: !If [ HasCodeBucketName, !Ref CodeBucketName, { "Fn::ImportValue" : !Sub "s3:${VPCAlias}:code:name" } ]
+        S3Key: !Ref  SnapshotRetentionDaysS3File
+      Runtime: python3.8
+      Timeout: 900
+      MemorySize: 1024
+      Handler: 
+        Fn::Join:
+          - ''
+          - - Ref: SnapshotRetentionDaysModuleName
+            - ".lambda_handler"
+      Role: !GetAtt 
+        - lambdardsdeletion
+        - Arn
+      Tags:
+        - Key: support-group
+          Value: dig-tech-cts-cloud-db-support-team
+        - Key: 'Name'
+          Value: !Sub 'rds-retention-days-policy-notification-${VPCAlias}'
+        - Key: 'env'
+          Value: 'test'
+        - Key: 'uai'
+          Value: !Sub '${UAI}'  
+ 
+ 
+ 
+  LambdaRetentionDaysNotificationScheduledRule: 
+    Type: AWS::Events::Rule
+    Description: Triggers the Retention days tag policy notification Lambda Function
+    Properties:
+    
+      ScheduleExpression: !Join 
+        - ''
+        - - cron(
+          -  0/10 * * * ? *
+          - )
+      State: "ENABLED"
+      Targets: 
+        - 
+          Arn: 
+            Fn::GetAtt: 
+              - "RdsSnapshotNotificationLambdaFunction"
+              - "Arn"
+          Id: "TargetLambdaV1"
+  PermissionForNotificationEventsToInvokeLambda: 
+    Type: AWS::Lambda::Permission
+    Properties: 
+      FunctionName: !Ref "RdsSnapshotNotificationLambdaFunction"
+      Action: "lambda:InvokeFunction"
+      Principal: "events.amazonaws.com"
+      SourceArn: 
+        Fn::GetAtt: 
+          - "LambdaRetentionDaysNotificationScheduledRule"
+          - "Arn"
+
+
+
+
+

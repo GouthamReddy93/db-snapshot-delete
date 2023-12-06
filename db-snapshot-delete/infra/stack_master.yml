@@ -1,0 +1,19 @@
+---
+
+# DO NOT MODIFY this file directly
+# This file was generated with the script /root/503227922/myaccout/dbss-aws-ops-deployment/db-snapshot-delete/../bin/regensm.py
+# Modify your source file /root/503227922/myaccout/dbss-aws-ops-deployment/db-snapshot-delete/infra/stack_master-pilot-dbss_manual_snapshot_deletion.yml and run the script again
+
+template_dir: ./template
+region_aliases:
+  pilot: us-east-1
+stack_defaults:
+  allowed_accounts: '156405602218'
+  tags:
+    uai: UAI3036792
+    env: stg
+    support-group: dig-tech-cts-cloud-db-support-team
+stacks:
+  pilot:
+    dbss-manualsnapshotdeletions-pilot:
+      template: dbss-rds-manual-snapshot-deletion.yml

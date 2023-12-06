@@ -1,0 +1,30 @@
+template_dir: ./template
+ 
+
+common:
+  APP_INSTANCE: test-lambda
+  VPCAlias: pilot
+  UAI: UAI3036792
+  ENV: stg
+
+region_aliases:
+  pilot: us-east-1  
+
+stack_defaults:
+  # replace account number of your Account number in AWS
+  allowed_accounts: '156405602218'
+  tags:
+    uai: UAI3036792
+    env: stg
+    support-group: dig-tech-cts-cloud-db-support-team
+ 
+
+stacks:
+  pilot:
+    dbss-manualsnapshotdeletions:
+      template: dbss-rds-manual-snapshot-deletion.yml
+      params:
+        VPCAlias: { "common": "VPCAlias" }
+        UAI: { "common": "UAI" }
+        SnapshotDeletionS3File: lambda/rds-manualsnapshot-deletion/1/rds-manualsnapshot-deletion.zip
+        SnapshotRetentionDaysS3File: lambda/rds-retention-days-policy-notification/1/rds-retention-days-policy-notification.zip 

@@ -1,0 +1,10 @@
+---
+
+# DO NOT MODIFY this file directly
+# This file was generated with the script /root/503227922/myaccout/dbss-aws-ops-deployment/db-snapshot-delete/../bin/regensm.py
+# Modify your source file /root/503227922/myaccout/dbss-aws-ops-deployment/db-snapshot-delete/infra/stack_master-pilot-dbss_manual_snapshot_deletion.yml and run the script again
+
+VPCAlias: pilot
+UAI: UAI3036792
+SnapshotDeletionS3File: lambda/rds-manualsnapshot-deletion/1/rds-manualsnapshot-deletion.zip
+SnapshotRetentionDaysS3File: lambda/rds-retention-days-policy-notification/1/rds-retention-days-policy-notification.zip
